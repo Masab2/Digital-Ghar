@@ -1,8 +1,8 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously
 
 import 'dart:developer';
-
 import 'package:digital_ghar/Repository/AuthRepo/auth_repo.dart';
+import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/config/utils/utils.dart';
 import 'package:digital_ghar/main.dart';
 import 'package:digital_ghar/service/SessionController/session_controller.dart';
@@ -35,12 +35,13 @@ class LoginViewModel with ChangeNotifier {
         await SessionController()
             .saveUserInPrefrences(value, value.data?.id ?? "");
         await SessionController().getUserFromPrefrences();
-        Utils.showCustomSnackBar(context, "Login Successfull", "");
+        Navigator.pushReplacementNamed(context, RoutesNames.bottomNavBarView);
       },
     ).onError(
       (error, stackTrace) {
         setLoading(false);
         log(error.toString());
+        Utils.showCustomSnackBar(context, error.toString(), "Error");
       },
     );
   }
