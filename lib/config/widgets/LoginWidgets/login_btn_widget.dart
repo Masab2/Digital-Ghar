@@ -21,11 +21,16 @@ class LoginBtnWidget extends StatelessWidget {
           onTap: () {
             if (emailController.text.isEmpty ||
                 passwordController.text.isEmpty) {
-              Utils.showCustomSnackBar(context, "Please Enter The Data", "", );
+              Utils.showCustomSnackBar(
+                context,
+                "Please Enter The Data",
+                "",
+              );
             } else {
               value.loginApi(emailController, passwordController, context);
             }
           },
+          loading: value.isLoading,
         );
       },
     );

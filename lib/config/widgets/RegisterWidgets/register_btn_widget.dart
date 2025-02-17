@@ -34,6 +34,7 @@ class RegisterBtnWidget extends StatelessWidget {
                   nameController, emailController, passwordController, context);
             }
           },
+          loading: value.isLoading,
         );
       },
     );

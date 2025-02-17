@@ -6,7 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 class RoundBtn extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
-  const RoundBtn({super.key, required this.text, required this.onTap});
+  bool loading;
+  RoundBtn(
+      {super.key,
+      required this.text,
+      required this.onTap,
+      this.loading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +23,15 @@ class RoundBtn extends StatelessWidget {
       ),
       color: AppColor.blueColor,
       onPressed: onTap,
-      child: Text(
-        text,
-        style: GoogleFonts.poppins(
-          fontSize: context.mh * 0.020,
-          color: Colors.white,
-        ),
-      ),
+      child: loading
+          ? const CircularProgressIndicator()
+          : Text(
+              text,
+              style: GoogleFonts.poppins(
+                fontSize: context.mh * 0.018,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
     );
   }
 }
