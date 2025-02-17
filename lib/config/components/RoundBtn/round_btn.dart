@@ -7,11 +7,12 @@ class RoundBtn extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
   bool loading;
-  RoundBtn(
-      {super.key,
-      required this.text,
-      required this.onTap,
-      this.loading = false});
+  RoundBtn({
+    super.key,
+    required this.text,
+    required this.onTap,
+    this.loading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
