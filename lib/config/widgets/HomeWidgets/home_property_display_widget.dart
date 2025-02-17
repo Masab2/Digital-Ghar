@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:digital_ghar/Model/RentPropertiesModel/rent_properties_model.dart';
 import 'package:digital_ghar/config/app/app_url.dart';
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
@@ -55,76 +56,85 @@ class HomePropertyDisplayWidget extends StatelessWidget {
                 itemCount: displayCount + 1,
                 itemBuilder: (context, index) {
                   if (index < displayCount) {
-                    return Container(
-                      height: context.mh * 0.25,
-                      width: context.mw * 0.70,
-                      decoration: BoxDecoration(
-                        color: AppColor.greyColor.withOpacity(0.15),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      margin:
-                          EdgeInsets.only(
-                              left: context.mw * 0.02,
-                          ),
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              height: context.mh * 0.20,
-                              width: context.mw * 0.80,
-                              AppUrl.buildUrlImage(properties[index].image),
-                              fit: BoxFit.cover,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context,
+                            RoutesNames.houseForSellPropertieDetailView,
+                            arguments: {
+                              "houseForSell": properties[index],
+                              "RentProperty": RentPropertiesData(),
+                            });
+                      },
+                      child: Container(
+                        height: context.mh * 0.25,
+                        width: context.mw * 0.70,
+                        decoration: BoxDecoration(
+                          color: AppColor.greyColor.withOpacity(0.15),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        margin: EdgeInsets.only(
+                          left: context.mw * 0.02,
+                        ),
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                height: context.mh * 0.20,
+                                width: context.mw * 0.80,
+                                AppUrl.buildUrlImage(properties[index].image),
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          0.01.ph(context),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: context.mw * 0.02,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(properties[index].title,
+                            0.01.ph(context),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: context.mw * 0.02,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(properties[index].title,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: context.mh * 0.018,
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                    ],
+                                  ),
+                                  0.01.ph(context),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "${properties[index].price.toString()} Rs",
                                         style: GoogleFonts.poppins(
-                                          fontSize: context.mh * 0.018,
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                  ],
-                                ),
-                                0.01.ph(context),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "${properties[index].price.toString()} Rs",
-                                      style: GoogleFonts.poppins(
-                                        fontSize: context.mh * 0.016,
-                                        fontWeight: FontWeight.w700,
-                                        color: AppColor.blueColor,
+                                          fontSize: context.mh * 0.016,
+                                          fontWeight: FontWeight.w700,
+                                          color: AppColor.blueColor,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                0.02.ph(context),
-                                Row(
-                                  children: [
-                                    Icon(IconlyLight.location,
-                                        size: context.mh * 0.02,
-                                        color: AppColor.greyColor),
-                                    Text(
-                                      properties[index].location,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: context.mh * 0.013,
+                                    ],
+                                  ),
+                                  0.02.ph(context),
+                                  Row(
+                                    children: [
+                                      Icon(IconlyLight.location,
+                                          size: context.mh * 0.02,
                                           color: AppColor.greyColor),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      Text(
+                                        properties[index].location,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: context.mh * 0.013,
+                                            color: AppColor.greyColor),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   } else {

@@ -6,5 +6,6 @@ class RoutesNames {
   static const String allPropertiesView = "allPropertiesView";
   static const String profileView = "profileView";
   static const String allRentPropertiesView = "allRentPropertiesView";
-
+  static const String houseForSellPropertieDetailView =
+      "houseForSellPropertieDetailView";
 }

@@ -1,4 +1,5 @@
 import 'package:digital_ghar/Model/HouseForSaleModel/house_for_sale_model.dart';
+import 'package:digital_ghar/Model/RentPropertiesModel/rent_properties_model.dart';
 import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/view/view.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,17 @@ class Routes {
       case RoutesNames.allRentPropertiesView:
         return MaterialPageRoute(
           builder: (_) => const AllRentPropertiesView(),
+        );
+      case RoutesNames.houseForSellPropertieDetailView:
+        final Map<String, dynamic> arguments = args as Map<String, dynamic>;
+        final houseforSell = arguments['houseForSell'] as HouseForSaleData;
+        final rentProperty = arguments['RentProperty'] as RentPropertiesData;
+
+        return MaterialPageRoute(
+          builder: (_) => PropertyDetailView(
+            data: houseforSell,
+            rentData: rentProperty,
+          ),
         );
       default:
         return MaterialPageRoute(
