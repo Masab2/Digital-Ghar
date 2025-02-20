@@ -53,6 +53,12 @@ class Routes {
             rentData: rentProperty,
           ),
         );
+
+      // Admin Routes
+      case RoutesNames.adminDashboardView:
+        return MaterialPageRoute(
+          builder: (_) => const AdminDashboardView(),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) {

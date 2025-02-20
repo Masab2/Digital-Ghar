@@ -24,7 +24,9 @@ class SelectAuthScreenView extends StatelessWidget {
               role: "Admin",
               icon: Icons.admin_panel_settings,
               color: Colors.blue,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, RoutesNames.adminDashboardView);
+              },
             ),
             RoleCard(
               role: "Contractor",
