@@ -1,20 +1,20 @@
 import 'package:digital_ghar/config/assets/image_asset.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
-import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 
-import '../../config/widgets/widgets.dart';
+import '../../../config/widgets/widgets.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final ValueNotifier<bool> _obscures = ValueNotifier(true);
 
   @override
@@ -22,6 +22,7 @@ class _LoginViewState extends State<LoginView> {
     _emailController.dispose();
     _passwordController.dispose();
     _obscures.dispose();
+    _nameController.dispose();
     super.dispose();
   }
 
@@ -32,7 +33,7 @@ class _LoginViewState extends State<LoginView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            0.05.ph(context),
+            0.03.ph(context),
             const Center(
               child: Image(
                 image: AssetImage(ImageAsset.logo),
@@ -43,14 +44,18 @@ class _LoginViewState extends State<LoginView> {
               padding: EdgeInsets.symmetric(horizontal: context.mw * 0.03),
               child: Column(
                 children: [
-                  LoginEmailWidget(
+                  RegisterNameWidget(
+                    nameController: _nameController,
+                  ),
+                  0.02.ph(context),
+                  RegisterEmailWidget(
                     emailController: _emailController,
                   ),
                   0.02.ph(context),
                   ValueListenableBuilder(
                     valueListenable: _obscures,
                     builder: (context, value, child) {
-                      return LoginPasswordInputWidget(
+                      return RegisterPasswordInputWidget(
                         controller: _passwordController,
                         obsecurevalue: _obscures.value,
                         suffixIcon: InkWell(
@@ -69,17 +74,18 @@ class _LoginViewState extends State<LoginView> {
                     },
                   ),
                   0.04.ph(context),
-                  LoginBtnWidget(
+                  RegisterBtnWidget(
                     emailController: _emailController,
                     passwordController: _passwordController,
+                    nameController: _nameController,
                   ),
                   0.02.ph(context),
                   AuthBottomWidget(
-                    text: "Dont't have an Account?",
+                    text: "Already have an Account?",
                     onPressed: () {
-                      Navigator.pushNamed(context, RoutesNames.registerView);
+                      Navigator.pop(context);
                     },
-                    buttonText: "Sign Up",
+                    buttonText: "Sign In",
                   ),
                 ],
               ),

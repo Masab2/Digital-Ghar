@@ -1,35 +1,37 @@
 // ignore_for_file: deprecated_member_use
+
 import 'package:digital_ghar/Model/HouseForSaleModel/house_for_sale_model.dart';
+import 'package:digital_ghar/Model/RentPropertiesModel/rent_properties_model.dart';
 import 'package:digital_ghar/config/app/app_url.dart';
+import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/components/TextFormFeilds/search_text_form_feild.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
 import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/config/utils/filter_bottom_sheet_utils.dart';
-import 'package:digital_ghar/viewModel/RentPropertiesViewModel/rent_properties_viewModel.dart';
+import 'package:digital_ghar/viewModel/HouseForSellViewModel/house_for_sell_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
-import '../../config/color/app_color.dart';
-
-class AllRentPropertiesView extends StatelessWidget {
-  const AllRentPropertiesView({super.key});
+class AllPropertiesDisplayView extends StatelessWidget {
+  final List<HouseForSaleData> data;
+  const AllPropertiesDisplayView({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Rent Properties',
+            'Search',
             style: GoogleFonts.poppins(
-              fontSize: context.mh * 0.025,
+              fontSize: context.mh * 0.024,
               fontWeight: FontWeight.w600,
             ),
           ),
           centerTitle: true,
         ),
-        body: Consumer<RentPropertiesViewmodel>(
+        body: Consumer<HouseForSellViewModel>(
           builder: (context, value, child) {
             return Column(
               children: [
@@ -86,8 +88,8 @@ class AllRentPropertiesView extends StatelessWidget {
                           Navigator.pushNamed(context,
                               RoutesNames.houseForSellPropertieDetailView,
                               arguments: {
-                                "houseForSell": HouseForSaleData(),
-                                "RentProperty": property,
+                                "houseForSell": property,
+                                "RentProperty": RentPropertiesData(),
                               });
                         },
                         child: Container(
@@ -97,7 +99,6 @@ class AllRentPropertiesView extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             color: AppColor.greyColor.withOpacity(0.15),
-                            // color: Colors.red,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Column(
@@ -106,29 +107,11 @@ class AllRentPropertiesView extends StatelessWidget {
                                 flex: 3,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
-                                  child: property.image.isNotEmpty
-                                      ? Image.network(
-                                          AppUrl.buildUrlImage(property.image),
-                                          width: context.mw * 0.47,
-                                          fit: BoxFit.cover,
-                                          errorBuilder:
-                                              (context, error, stackTrace) {
-                                            return Center(
-                                              child: Icon(
-                                                Icons.error_outline,
-                                                size: context.mh * 0.05,
-                                                color: AppColor.greyColor,
-                                              ),
-                                            );
-                                          },
-                                        )
-                                      : Center(
-                                          child: Icon(
-                                            Icons.error_outline,
-                                            size: context.mh * 0.05,
-                                            color: AppColor.greyColor,
-                                          ),
-                                        ),
+                                  child: Image.network(
+                                    width: context.mw * 0.47,
+                                    AppUrl.buildUrlImage(property.image),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               Expanded(
@@ -159,7 +142,7 @@ class AllRentPropertiesView extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            "${property.price} / month",
+                                            property.price.toString(),
                                             style: GoogleFonts.poppins(
                                               fontSize: context.mh * 0.016,
                                               fontWeight: FontWeight.w600,

@@ -139,7 +139,7 @@ class RoleCard extends StatelessWidget {
           title: Text(
             role,
             style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.022,
+                fontSize: MediaQuery.of(context).size.height * 0.020,
                 fontWeight: FontWeight.w600),
           ),
           onTap: onPressed,
