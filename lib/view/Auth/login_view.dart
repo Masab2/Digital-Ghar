@@ -28,10 +28,11 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            0.20.ph(context),
+            0.05.ph(context),
             const Center(
               child: Image(
                 image: AssetImage(ImageAsset.logo),

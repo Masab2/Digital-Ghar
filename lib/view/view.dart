@@ -7,3 +7,4 @@ export './Home/all_properties_display_view.dart';
 export './ProfileView/profile_view.dart';
 export './Home/all_rent_properties_view.dart';
 export 'Home/PropertyDetails/property_detail_view.dart';
+export './Auth/select_auth_screen_view.dart';

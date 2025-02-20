@@ -1,5 +1,6 @@
 class RoutesNames {
   static const String splashView = "splashView";
+  static const String selectAuthScreenView = "selectAuthScreenView";
   static const String loginView = "loginView";
   static const String registerView = "registerView";
   static const String bottomNavBarView = "bottomNavBarView";

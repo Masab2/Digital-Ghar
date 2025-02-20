@@ -12,6 +12,10 @@ class Routes {
         return MaterialPageRoute(
           builder: (_) => const SplashView(),
         );
+      case RoutesNames.selectAuthScreenView:
+        return MaterialPageRoute(
+          builder: (_) => const SelectAuthScreenView(),
+        );
       case RoutesNames.loginView:
         return MaterialPageRoute(
           builder: (_) => const LoginView(),

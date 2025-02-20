@@ -29,10 +29,11 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            0.20.ph(context),
+            0.03.ph(context),
             const Center(
               child: Image(
                 image: AssetImage(ImageAsset.logo),

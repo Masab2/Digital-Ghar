@@ -85,7 +85,7 @@ class _SplashViewState extends State<SplashView> {
                 text: "Getting Started",
                 onTap: () {
                   Navigator.pushReplacementNamed(
-                      context, RoutesNames.loginView);
+                      context, RoutesNames.selectAuthScreenView);
                 },
               ),
             ),
