@@ -31,8 +31,8 @@ class HomeAppBarWidget {
       leading: IconButton(
         icon: const Icon(IconlyBold.arrow_left),
         onPressed: () {
-           Navigator.pop(context);
-              SystemNavigator.pop();
+          //  Navigator.pop(context);
+          //     SystemNavigator.pop();
         },
       ),
       actions: [

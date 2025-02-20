@@ -53,7 +53,7 @@ class _CustomizedBottomNavBarState extends State<CustomizedBottomNavBar> {
         bottomNavigationBar: const SafeArea(
           child: _MainWrapperBottomNavBar(
             "Home",
-            "Construction",
+            "Contractors",
             "Design",
             "Chat",
             "Profile",
