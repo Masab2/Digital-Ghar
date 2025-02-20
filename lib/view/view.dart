@@ -1,4 +1,4 @@
-export './splashView/splash_view.dart';
+export './user/splashView/splash_view.dart';
 export './user/Auth/login_view.dart';
 export './user/Auth/register_view.dart';
 export './user/BottomNavBarView/bottom_nav_bar_view.dart';
