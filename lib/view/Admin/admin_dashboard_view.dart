@@ -14,7 +14,7 @@ class AdminDashboardView extends StatelessWidget {
     return const Scaffold(
       backgroundColor: Color(0xFFE5E5E5),
       appBar: AdminAppBar(),
-      body: AdminDashboardBody(),
+      body: SafeArea(child: AdminDashboardBody()),
       floatingActionButton: AdminFloatingActionButton(),
     );
   }

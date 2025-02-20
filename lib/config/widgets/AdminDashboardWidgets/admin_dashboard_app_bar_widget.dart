@@ -12,6 +12,7 @@ class AdminAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: AppColor.whiteColor,
       elevation: 0,
+      centerTitle: true,
       title: Text(
         'Admin Dashboard',
         style: GoogleFonts.aBeeZee(

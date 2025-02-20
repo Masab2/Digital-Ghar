@@ -38,7 +38,7 @@ class StatsGrid extends StatelessWidget {
         ),
         StatCard(
           title: 'Total Revenue',
-          value: '₹1.2M',
+          value: '1.2M',
           icon: IconlyBold.wallet,
           color: Colors.purple,
         ),
