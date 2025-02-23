@@ -13,7 +13,5 @@ export './user/Auth/select_auth_screen_view.dart';
 // Admin Views
 export './Admin/admin_dashboard_view.dart';
 
-
-
-
 // Contractor Views
+export './Contractor/contractor_dashboard_view.dart';

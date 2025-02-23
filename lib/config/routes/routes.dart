@@ -53,7 +53,11 @@ class Routes {
             rentData: rentProperty,
           ),
         );
-
+      // Contractor Routes
+      case RoutesNames.contractorDashboardView:
+        return MaterialPageRoute(
+          builder: (_) => const ContractorDashboardView(),
+        );
       // Admin Routes
       case RoutesNames.adminDashboardView:
         return MaterialPageRoute(

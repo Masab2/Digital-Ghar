@@ -32,7 +32,10 @@ class SelectAuthScreenView extends StatelessWidget {
               role: "Contractor",
               icon: Icons.construction,
               color: Colors.orange,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(
+                    context, RoutesNames.contractorDashboardView);
+              },
             ),
 
             SizedBox(height: MediaQuery.of(context).size.height * 0.03),
