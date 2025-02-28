@@ -29,4 +29,7 @@ class AppUrl {
 
   // For Rent Properties Url
   static String rentPropertiesUrl = "${baseUrl}api/get-all-rent-properties";
+
+  // Add Contractor Url
+  static String contractorUrlCurd = "${baseUrl}contractor/";
 }
