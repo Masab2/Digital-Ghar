@@ -63,6 +63,10 @@ class Routes {
         return MaterialPageRoute(
           builder: (_) => const AdminDashboardView(),
         );
+      case RoutesNames.addContractorProfileView:
+        return MaterialPageRoute(
+          builder: (_) => const AddContractorProfileView(),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) {

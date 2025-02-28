@@ -1,3 +1,4 @@
+import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/config/widgets/AdminDashboardWidgets/admin_dash_board_body_widget.dart';
 import 'package:digital_ghar/config/widgets/AdminDashboardWidgets/admin_dashboard_app_bar_widget.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +122,11 @@ class AdminAddDialog extends StatelessWidget {
                     title: 'Add Contractor',
                     subtitle: 'Register a new contractor',
                     icon: IconlyBold.work,
-                    onTap: () => Navigator.pop(context),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(
+                          context, RoutesNames.addContractorProfileView);
+                    },
                   ),
                   Divider(color: Colors.grey.withOpacity(0.1)),
                   _AddOptionTile(

@@ -26,9 +26,7 @@ class ContractorFloatingActionButton extends StatelessWidget {
     return FloatingActionButton(
       backgroundColor: AppColor.blueColor,
       child: const Icon(IconlyBold.plus, color: AppColor.whiteColor),
-      onPressed: () {
-        // Add new project functionality
-      },
+      onPressed: () {},
     );
   }
 }
