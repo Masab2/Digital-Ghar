@@ -7,18 +7,22 @@ class AddFeildFormFeildComp extends StatelessWidget {
   final String hintText;
   final TextInputType? textInputType;
   final TextEditingController? controller;
-  const AddFeildFormFeildComp(
-      {super.key,
-      required this.icon,
-      required this.hintText,
-      this.textInputType,
-      this.controller});
+  final String? Function(String?)? validator;
+  const AddFeildFormFeildComp({
+    super.key,
+    required this.icon,
+    required this.hintText,
+    this.textInputType,
+    this.controller,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       keyboardType: textInputType,
       controller: controller,
+      validator: validator,
       decoration: InputDecoration(
         prefixIcon: Icon(icon, color: AppColor.blueColor),
         hintText: hintText,

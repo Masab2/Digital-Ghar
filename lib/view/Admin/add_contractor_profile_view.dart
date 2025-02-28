@@ -1,3 +1,4 @@
+import 'package:digital_ghar/config/components/RoundBtn/round_btn.dart';
 import 'package:digital_ghar/config/components/TextFormFeilds/add_feild_form_feild_comp.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +21,23 @@ class _AddContractorProfileViewState extends State<AddContractorProfileView> {
   final company = TextEditingController();
   final address = TextEditingController();
   final regNo = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  String? _validateField(String? value, String fieldName) {
+    if (value == null || value.trim().isEmpty) {
+      return "$fieldName is required";
+    }
+    return null;
+  }
+
+  String? _validatePhone(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return "Phone number is required";
+    } else if (!RegExp(r'^[0-9]{10,15}$').hasMatch(value)) {
+      return "Enter a valid phone number (10-15 digits)";
+    }
+    return null;
+  }
 
   @override
   void dispose() {
@@ -51,49 +69,62 @@ class _AddContractorProfileViewState extends State<AddContractorProfileView> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.mw * 0.05),
-        child: Column(
-          children: [
-            SizedBox(height: context.mh * 0.03),
-            const AddFeildFormFeildComp(
-                icon: IconlyLight.profile, hintText: "Full Name"),
-            SizedBox(height: context.mh * 0.02),
-            const AddFeildFormFeildComp(
-                icon: IconlyLight.message, hintText: "Email"),
-            SizedBox(height: context.mh * 0.02),
-            const AddFeildFormFeildComp(
-                icon: IconlyLight.profile, hintText: "Phone"),
-            SizedBox(height: context.mh * 0.02),
-            const AddFeildFormFeildComp(
-                icon: IconlyLight.call, hintText: "Company"),
-            SizedBox(height: context.mh * 0.02),
-            const AddFeildFormFeildComp(
-                icon: IconlyLight.location, hintText: "Address"),
-            SizedBox(height: context.mh * 0.02),
-            const AddFeildFormFeildComp(
-                icon: IconlyLight.document, hintText: "Registration No"),
-            SizedBox(height: context.mh * 0.04),
-            SizedBox(
-              width: double.infinity,
-              height: context.mh * 0.06,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.blueColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                onPressed: () {},
-                child: Text(
-                  'Submit',
-                  style: GoogleFonts.aBeeZee(
-                    color: AppColor.whiteColor,
-                    fontSize: context.mh * 0.018,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              SizedBox(height: context.mh * 0.03),
+              AddFeildFormFeildComp(
+                icon: IconlyLight.profile,
+                hintText: "Full Name",
+                controller: contractorFullName,
+                validator: (value) => _validateField(value, "Full Name"),
               ),
-            ),
-          ],
+              SizedBox(height: context.mh * 0.02),
+              AddFeildFormFeildComp(
+                icon: IconlyLight.message,
+                hintText: "Email",
+                controller: emailController,
+                validator: (value) => _validateField(value, "Email"),
+              ),
+              SizedBox(height: context.mh * 0.02),
+              AddFeildFormFeildComp(
+                icon: IconlyLight.profile,
+                hintText: "Phone",
+                controller: phone,
+                validator: (value) => _validatePhone(value),
+              ),
+              SizedBox(height: context.mh * 0.02),
+              AddFeildFormFeildComp(
+                icon: IconlyLight.call,
+                hintText: "Company",
+                controller: company,
+                validator: (value) => _validateField(value, "Company"),
+              ),
+              SizedBox(height: context.mh * 0.02),
+              AddFeildFormFeildComp(
+                icon: IconlyLight.location,
+                hintText: "Address",
+                controller: address,
+                validator: (value) => _validateField(value, "Address"),
+              ),
+              SizedBox(height: context.mh * 0.02),
+              AddFeildFormFeildComp(
+                icon: IconlyLight.document,
+                hintText: "Registration No",
+                controller: regNo,
+                validator: (value) => _validateField(value, "Registration No"),
+              ),
+              SizedBox(height: context.mh * 0.04),
+              RoundBtn(
+                text: "Submit",
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {}
+                },
+                radius: 10,
+              )
+            ],
+          ),
         ),
       ),
     );

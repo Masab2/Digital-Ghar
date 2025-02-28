@@ -7,20 +7,22 @@ class RoundBtn extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
   bool loading;
+  double radius;
   RoundBtn({
     super.key,
     required this.text,
     required this.onTap,
     this.loading = false,
+    this.radius = 28.0,
   });
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       height: context.mh * 0.06,
-      minWidth: context.mw * 0.75,
+      minWidth: context.mw,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(radius),
       ),
       color: AppColor.blueColor,
       onPressed: onTap,
@@ -31,6 +33,7 @@ class RoundBtn extends StatelessWidget {
               style: GoogleFonts.poppins(
                 fontSize: context.mh * 0.018,
                 fontWeight: FontWeight.w500,
+                color: AppColor.whiteColor,
               ),
             ),
     );

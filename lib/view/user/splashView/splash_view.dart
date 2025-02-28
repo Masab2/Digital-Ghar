@@ -81,12 +81,15 @@ class _SplashViewState extends State<SplashView> {
             left: 0,
             right: 0,
             child: Center(
-              child: RoundBtn(
-                text: "Getting Started",
-                onTap: () {
-                  Navigator.pushReplacementNamed(
-                      context, RoutesNames.selectAuthScreenView);
-                },
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: context.mw * 0.08),
+                child: RoundBtn(
+                  text: "Getting Started",
+                  onTap: () {
+                    Navigator.pushReplacementNamed(
+                        context, RoutesNames.selectAuthScreenView);
+                  },
+                ),
               ),
             ),
           ),
