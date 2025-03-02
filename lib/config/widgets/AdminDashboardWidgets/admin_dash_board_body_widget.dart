@@ -1,8 +1,5 @@
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
-import 'package:digital_ghar/config/widgets/AdminDashboardWidgets/admin_dashboard_search_widget.dart'
-    as search;
 import 'package:flutter/material.dart';
-
 import 'admin_dashboard_design_list_widget.dart';
 import 'admin_property_list_widget.dart';
 import 'admin_stats_grid_widget.dart';
@@ -24,8 +21,6 @@ class AdminDashboardBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const search.SearchBar(),
-            0.02.ph(context),
             const StatsGrid(),
             0.03.ph(context),
             const SectionTitle(title: 'Recent Properties'),
