@@ -13,6 +13,7 @@ class RoutesNames {
   // Admin Routes
   static const String adminDashboardView = "adminDashboardView";
   static const String addContractorProfileView = "addContractorProfileView";
+  static const String addPropertiesForSellView = "addPropertiesForSellView";
 
   // Contractor Routes
   static const String contractorDashboardView = "contractorDashboardView";

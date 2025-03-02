@@ -67,6 +67,10 @@ class Routes {
         return MaterialPageRoute(
           builder: (_) => const AddContractorProfileView(),
         );
+      case RoutesNames.addPropertiesForSellView:
+        return MaterialPageRoute(
+          builder: (_) => const AddPropertiesForSellView(),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) {

@@ -4,8 +4,32 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
-class PropertyList extends StatelessWidget {
-  const PropertyList({super.key});
+class PropertyListForSell extends StatelessWidget {
+  const PropertyListForSell({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColor.whiteColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: 3,
+        separatorBuilder: (context, index) => Divider(
+          color: Colors.grey.withOpacity(0.2),
+          height: 1,
+        ),
+        itemBuilder: (context, index) => PropertyListItem(index: index),
+      ),
+    );
+  }
+}
+
+class PropertyListForRent extends StatelessWidget {
+  const PropertyListForRent({super.key});
 
   @override
   Widget build(BuildContext context) {

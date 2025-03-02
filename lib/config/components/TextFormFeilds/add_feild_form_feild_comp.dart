@@ -1,6 +1,6 @@
 import 'package:digital_ghar/config/color/app_color.dart';
+import 'package:digital_ghar/config/extenshion/extenshion.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AddFeildFormFeildComp extends StatelessWidget {
   final IconData icon;
@@ -8,6 +8,7 @@ class AddFeildFormFeildComp extends StatelessWidget {
   final TextInputType? textInputType;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final int? maxlines;
   const AddFeildFormFeildComp({
     super.key,
     required this.icon,
@@ -15,23 +16,32 @@ class AddFeildFormFeildComp extends StatelessWidget {
     this.textInputType,
     this.controller,
     this.validator,
+    this.maxlines = 1,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: textInputType,
+      maxLines: maxlines,
       controller: controller,
       validator: validator,
+      keyboardType: textInputType,
       decoration: InputDecoration(
         prefixIcon: Icon(icon, color: AppColor.blueColor),
-        hintText: hintText,
-        hintStyle: GoogleFonts.aBeeZee(color: Colors.grey.shade600),
         filled: true,
-        fillColor: Colors.grey.shade100,
+        hintText: hintText,
+        fillColor: Colors.grey[100],
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColor.blueColor, width: 1.5),
+        ),
+        contentPadding: EdgeInsets.symmetric(
+          vertical: context.mh * 0.018,
+          horizontal: context.mw * 0.04,
         ),
       ),
     );

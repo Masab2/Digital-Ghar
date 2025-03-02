@@ -13,5 +13,6 @@ export './user/Auth/select_auth_screen_view.dart';
 // Admin Views
 export './Admin/admin_dashboard_view.dart';
 export './Admin/add_contractor_profile_view.dart';
+export './Admin/add_properties_for_sell_view.dart';
 // Contractor Views
 export './Contractor/contractor_dashboard_view.dart';
