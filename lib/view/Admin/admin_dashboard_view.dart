@@ -1,14 +1,30 @@
 import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/config/widgets/AdminDashboardWidgets/admin_dash_board_body_widget.dart';
 import 'package:digital_ghar/config/widgets/AdminDashboardWidgets/admin_dashboard_app_bar_widget.dart';
+import 'package:digital_ghar/viewModel/ContractorProfileViewModel/contractor_profile_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
+import 'package:provider/provider.dart';
 
-class AdminDashboardView extends StatelessWidget {
+class AdminDashboardView extends StatefulWidget {
   const AdminDashboardView({super.key});
+
+  @override
+  State<AdminDashboardView> createState() => _AdminDashboardViewState();
+}
+
+class _AdminDashboardViewState extends State<AdminDashboardView> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<ContractorProfileViewmodel>(context, listen: false)
+          .getContractorProfileApi();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
