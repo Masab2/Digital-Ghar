@@ -32,4 +32,7 @@ class AppUrl {
 
   // Add Contractor Url
   static String contractorUrlCurd = "${baseUrl}contractor/";
+
+  // Add House For Sale Url
+  static String addhouseForSaleUrl = "${baseUrl}api/add-house-for-sale";
 }

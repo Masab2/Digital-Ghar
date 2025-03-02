@@ -15,6 +15,10 @@ class AddPropertiesForSellView extends StatefulWidget {
 
 class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
   final _formKey = GlobalKey<FormState>();
+  final propertyTitleController = TextEditingController();
+  final priceController = TextEditingController();
+  final locationController = TextEditingController();
+  final propertyDescriptionController = TextEditingController();
   String? selectedCategory;
   final List<String> categories = [
     'Residential Apartment',
@@ -24,6 +28,16 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
     'Plot/Land',
     'Farmhouse',
   ];
+
+  @override
+  void dispose() {
+    propertyTitleController.dispose();
+    priceController.dispose();
+    locationController.dispose();
+    propertyDescriptionController.dispose();
+    selectedCategory = null;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
