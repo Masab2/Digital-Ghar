@@ -1,10 +1,12 @@
 import 'package:digital_ghar/config/components/RoundBtn/round_btn.dart';
 import 'package:digital_ghar/config/components/TextFormFeilds/add_feild_form_feild_comp.dart';
+import 'package:digital_ghar/viewModel/ContractorProfileViewModel/contractor_profile_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
+import 'package:provider/provider.dart';
 
 class AddContractorProfileView extends StatefulWidget {
   const AddContractorProfileView({super.key});
@@ -52,6 +54,9 @@ class _AddContractorProfileViewState extends State<AddContractorProfileView> {
 
   @override
   Widget build(BuildContext context) {
+    final contractorProfileViewModel =
+        Provider.of<ContractorProfileViewmodel>(context, listen: false);
+
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: AppBar(
@@ -116,13 +121,30 @@ class _AddContractorProfileViewState extends State<AddContractorProfileView> {
                 validator: (value) => _validateField(value, "Registration No"),
               ),
               SizedBox(height: context.mh * 0.04),
-              RoundBtn(
-                text: "Submit",
-                onTap: () {
-                  if (_formKey.currentState!.validate()) {}
-                },
-                radius: 10,
-              )
+              Consumer<ContractorProfileViewmodel>(
+                  builder: (context, value, child) {
+                return RoundBtn(
+                  loading: value.isLoading,
+                  text: "Submit",
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      contractorProfileViewModel.addContractorProfileApi(
+                        contractorFullName,
+                        emailController,
+                        phone,
+                        address,
+                        company,
+                        regNo,
+                        true,
+                        true,
+                        true,
+                        context,
+                      );
+                    }
+                  },
+                  radius: 10,
+                );
+              }),
             ],
           ),
         ),
