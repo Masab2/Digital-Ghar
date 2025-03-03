@@ -2,6 +2,7 @@ import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/routes/routes.dart';
 import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/service/ServiceLocator/service_locator.dart';
+import 'package:digital_ghar/viewModel/AddPropertyViewModel/add_property_viewModel.dart';
 import 'package:digital_ghar/viewModel/AuthViewModel/login_view_Model.dart';
 import 'package:digital_ghar/viewModel/AuthViewModel/register_viewModel.dart';
 import 'package:digital_ghar/viewModel/BottomNavBarViewModel/bottom_nav_bar_viewModel.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HouseForSellViewModel()),
         ChangeNotifierProvider(create: (_) => RentPropertiesViewmodel()),
         ChangeNotifierProvider(create: (_) => ContractorProfileViewmodel()),
+        ChangeNotifierProvider(create: (_) => AddPropertyViewmodel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/components/RoundBtn/round_btn.dart';
 import 'package:digital_ghar/config/components/TextFormFeilds/add_feild_form_feild_comp.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
+import 'package:digital_ghar/viewModel/AddPropertyViewModel/add_property_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class AddPropertiesForSellView extends StatefulWidget {
   const AddPropertiesForSellView({super.key});
@@ -41,6 +46,8 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
 
   @override
   Widget build(BuildContext context) {
+    final addPropertySellController =
+        Provider.of<AddPropertyViewmodel>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: AppBar(
@@ -67,7 +74,7 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
               // Image Selection
               _buildSectionTitle('Property Image'),
               SizedBox(height: context.mh * 0.015),
-              _buildImageSelector(context),
+              _buildImageSelector(context, addPropertySellController),
               SizedBox(height: context.mh * 0.025),
 
               // Property Title
@@ -163,36 +170,55 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
     );
   }
 
-  Widget _buildImageSelector(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        height: context.mh * 0.2,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.grey[100],
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey[300]!, width: 1),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.add_photo_alternate_outlined,
-              size: context.mh * 0.05,
-              color: AppColor.blueColor,
-            ),
-            SizedBox(height: context.mh * 0.015),
-            Text(
-              'Tap to add property image',
-              style: GoogleFonts.aBeeZee(
-                color: Colors.grey[600],
-                fontSize: context.mh * 0.016,
+  Widget _buildImageSelector(
+      BuildContext context, AddPropertyViewmodel viewModel) {
+    return Consumer<AddPropertyViewmodel>(builder: (context, value, child) {
+      return InkWell(
+        onTap: () {
+          viewModel.getImageFromGallery(ImageSource.gallery);
+        },
+        child: viewModel.imagePath == ""
+            ? Container(
+                height: context.mh * 0.2,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey[300]!, width: 1),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.add_photo_alternate_outlined,
+                      size: context.mh * 0.05,
+                      color: AppColor.blueColor,
+                    ),
+                    SizedBox(height: context.mh * 0.015),
+                    Text(
+                      'Tap to add property image',
+                      style: GoogleFonts.aBeeZee(
+                        color: Colors.grey[600],
+                        fontSize: context.mh * 0.016,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image(
+                  height: context.mh * 0.2,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  image: FileImage(
+                    File(
+                      viewModel.imagePath.toString(),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
+      );
+    });
   }
 }
