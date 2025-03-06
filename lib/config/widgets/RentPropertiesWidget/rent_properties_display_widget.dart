@@ -94,7 +94,7 @@ class RentPropertiesDisplayWidget extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.network(
-                                AppUrl.buildUrlImage(property.image),
+                                property.image,
                                 height: context.mw * 0.25,
                                 width: context.mw * 0.25,
                                 fit: BoxFit.cover,
@@ -151,7 +151,12 @@ class RentPropertiesDisplayWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Divider(color: Colors.grey.shade300, endIndent: context.mw * 0.02, indent: context.mw * 0.02, thickness: 0.3,),
+                      Divider(
+                        color: Colors.grey.shade300,
+                        endIndent: context.mw * 0.02,
+                        indent: context.mw * 0.02,
+                        thickness: 0.3,
+                      ),
                     ],
                   );
                 },

@@ -11,7 +11,7 @@ class PropertyImageCarousel extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(bottom: Radius.circular(20)),
       child: Image.network(
-        AppUrl.buildUrlImage(imageUrl),
+        imageUrl,
         width: double.infinity,
         height: context.mh * 0.3,
         fit: BoxFit.cover,

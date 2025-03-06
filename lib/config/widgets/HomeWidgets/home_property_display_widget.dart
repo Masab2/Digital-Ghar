@@ -82,7 +82,7 @@ class HomePropertyDisplayWidget extends StatelessWidget {
                               child: Image.network(
                                 height: context.mh * 0.20,
                                 width: context.mw * 0.80,
-                                AppUrl.buildUrlImage(properties[index].image),
+                                properties[index].image,
                                 fit: BoxFit.cover,
                               ),
                             ),

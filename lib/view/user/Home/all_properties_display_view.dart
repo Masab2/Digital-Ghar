@@ -2,7 +2,6 @@
 
 import 'package:digital_ghar/Model/HouseForSaleModel/house_for_sale_model.dart';
 import 'package:digital_ghar/Model/RentPropertiesModel/rent_properties_model.dart';
-import 'package:digital_ghar/config/app/app_url.dart';
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/components/TextFormFeilds/search_text_form_feild.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
@@ -109,7 +108,7 @@ class AllPropertiesDisplayView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
                                     width: context.mw * 0.47,
-                                    AppUrl.buildUrlImage(property.image),
+                                    property.image,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
