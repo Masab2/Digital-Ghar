@@ -1,4 +1,3 @@
-import 'package:digital_ghar/config/app/app_url.dart';
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
 import 'package:digital_ghar/data/Response/status.dart';

@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:digital_ghar/Model/RentPropertiesModel/rent_properties_model.dart';
-import 'package:digital_ghar/config/app/app_url.dart';
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
 import 'package:digital_ghar/config/routes/routes_names.dart';
