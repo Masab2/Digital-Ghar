@@ -2,6 +2,7 @@ import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/config/widgets/AdminDashboardWidgets/admin_dash_board_body_widget.dart';
 import 'package:digital_ghar/config/widgets/AdminDashboardWidgets/admin_dashboard_app_bar_widget.dart';
 import 'package:digital_ghar/viewModel/ContractorProfileViewModel/contractor_profile_viewModel.dart';
+import 'package:digital_ghar/viewModel/HouseForSellViewModel/house_for_sell_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
@@ -22,6 +23,8 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<ContractorProfileViewmodel>(context, listen: false)
           .getContractorProfileApi();
+      Provider.of<HouseForSellViewModel>(context, listen: false)
+          .houseForSellApi();
     });
     super.initState();
   }
