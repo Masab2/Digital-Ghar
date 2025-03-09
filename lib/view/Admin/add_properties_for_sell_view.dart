@@ -45,18 +45,17 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
   Widget build(BuildContext context) {
     final addPropertySellController =
         Provider.of<AddPropertyViewmodel>(context, listen: false);
-    final category =
-        Provider.of<CategoryViewmodel>(context, listen: false);
+    final category = Provider.of<CategoryViewmodel>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: AppBar(
         leading: InkWell(
-          onTap: (){
-            category.clearSelectedCategory();
-            addPropertySellController.clearImage();
-            Navigator.pop(context);
-          },
-          child: const Icon(Icons.arrow_back_ios)),
+            onTap: () {
+              category.clearSelectedCategory();
+              addPropertySellController.clearImage();
+              Navigator.pop(context);
+            },
+            child: const Icon(Icons.arrow_back_ios)),
         backgroundColor: AppColor.blueColor,
         title: Text(
           'Add Property Sell',
@@ -86,6 +85,7 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
               _buildSectionTitle('Property Title'),
               SizedBox(height: context.mh * 0.015),
               AddFeildFormFeildComp(
+                controller: propertyTitleController,
                 icon: Icons.title,
                 hintText: "Enter Property Title",
                 validator: (val) =>
@@ -99,6 +99,7 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
               _buildSectionTitle('Property Location'),
               SizedBox(height: context.mh * 0.015),
               AddFeildFormFeildComp(
+                controller: locationController,
                 icon: Icons.location_on,
                 hintText: "Enter Property Address",
                 validator: (val) =>
@@ -108,21 +109,24 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
               _buildSectionTitle('Property Price'),
               SizedBox(height: context.mh * 0.015),
               AddFeildFormFeildComp(
-                  icon: Icons.monetization_on,
-                  hintText: "Enter Price",
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return 'Price cannot be empty';
-                    } else if (val.length <= 0) {
-                      return 'Price cannot be empty';
-                    } else {
-                      return null;
-                    }
-                  }),
+                controller: priceController,
+                icon: Icons.monetization_on,
+                hintText: "Enter Price",
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return 'Price cannot be empty';
+                  } else if (val.length <= 0) {
+                    return 'Price cannot be empty';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
               SizedBox(height: context.mh * 0.025),
               _buildSectionTitle('Property Description'),
               SizedBox(height: context.mh * 0.015),
               AddFeildFormFeildComp(
+                controller: propertyDescriptionController,
                 maxlines: 5,
                 hintText: "Enter Property Description",
                 validator: (val) =>
@@ -132,7 +136,16 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
               RoundBtn(
                 text: "Add Property",
                 onTap: () {
-                  if (_formKey.currentState!.validate()) {}
+                  if (_formKey.currentState!.validate()) {
+                    addPropertySellController.addHouseForSellApi(
+                      propertyTitleController.text,
+                      propertyDescriptionController.text,
+                      priceController.text,
+                      locationController.text,
+                      category.selectedCategory,
+                      context,
+                    );
+                  }
                 },
                 radius: 10,
               ),

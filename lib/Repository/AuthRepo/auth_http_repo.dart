@@ -10,7 +10,7 @@ class AuthHttpRepo implements AuthRepo {
   final _api = NetworkApiService();
   @override
   Future<UserModel> loginApi(dynamic data) async {
-    final response = await _api.getPostApiResponse(AppUrl.loginUrl, data);
+    final response = await _api.getPostApiResponse(AppUrl.loginUrl, data, false);
     UserModel userModel = UserModel.fromJson(response);
     log(userModel.data!.email.toString());
     return userModel;
@@ -18,7 +18,7 @@ class AuthHttpRepo implements AuthRepo {
 
   @override
   Future registerApi(data) async {
-    final response = await _api.getPostApiResponse(AppUrl.registerUrl, data);
+    final response = await _api.getPostApiResponse(AppUrl.registerUrl, data, false);
     return response;
   }
 }

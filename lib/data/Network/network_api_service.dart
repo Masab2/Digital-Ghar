@@ -5,13 +5,14 @@ import 'package:digital_ghar/data/Error/app_exception.dart';
 import 'package:digital_ghar/data/Network/base_api_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
+import 'package:http_parser/http_parser.dart';
+import 'package:mime/mime.dart';
 
 class NetworkApiService implements BaseApiServices {
   @override
   Future getGetApiResponse(String url) async {
     if (kDebugMode) {
-      print(url);
+      print('GET Request: $url');
     }
     dynamic responseJson;
     try {
@@ -19,57 +20,84 @@ class NetworkApiService implements BaseApiServices {
           await http.get(Uri.parse(url)).timeout(const Duration(seconds: 20));
       responseJson = returnResponse(response);
     } on SocketException {
-      throw NoInternetException('');
+      throw NoInternetException('No Internet Connection');
     } on TimeoutException {
-      throw FetchDataException('Network Request time out');
+      throw FetchDataException('Network Request timed out');
     }
 
     if (kDebugMode) {
-      print(responseJson);
+      print('Response: $responseJson');
     }
     return responseJson;
   }
 
   @override
-  Future getPostApiResponse(String url, dynamic data) async {
+  Future getPostApiResponse(String url, dynamic data, bool image) async {
     if (kDebugMode) {
-      print(url);
-      print(data);
+      print('POST Request: $url');
+      print('Payload Type: ${data.runtimeType}');
     }
 
     dynamic responseJson;
     try {
-      Response response = await post(
-        Uri.parse(url),
-        headers: {"Content-Type": "application/json"},
-        body: jsonEncode(data),
-      ).timeout(const Duration(seconds: 10));
+      if (image == true) {
+        var request = http.MultipartRequest('POST', Uri.parse(url))
+          ..headers.addAll({
+            "Accept": "application/json",
+          });
 
-      responseJson = returnResponse(response);
+        data.forEach((key, value) {
+          if (key != 'image') {
+            request.fields[key] = value.toString();
+          }
+        });
+
+        if (data['image'] != null && data['image'].isNotEmpty) {
+          Uint8List imageBytes = base64Decode(data['image']);
+          String mimeType =
+              lookupMimeType('', headerBytes: imageBytes) ?? "image/jpeg";
+
+          request.files.add(http.MultipartFile.fromBytes(
+            'image',
+            imageBytes,
+            filename: 'house_image.jpg',
+            contentType: MediaType.parse(mimeType),
+          ));
+        }
+
+        final streamedResponse = await request.send();
+        final response = await http.Response.fromStream(streamedResponse);
+        responseJson = returnResponse(response);
+      } else {
+        final response = await http.post(
+          Uri.parse(url),
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: jsonEncode(data),
+        );
+
+        responseJson = returnResponse(response);
+      }
     } on SocketException {
       throw NoInternetException('No Internet Connection');
     } on TimeoutException {
-      throw FetchDataException('Network Request time out');
+      throw FetchDataException('Network Request timed out');
     }
 
-    if (kDebugMode) {
-      print(responseJson);
-    }
     return responseJson;
   }
 
   dynamic returnResponse(http.Response response) {
     if (kDebugMode) {
-      print(response.statusCode);
+      print('Status Code: ${response.statusCode}');
     }
 
     switch (response.statusCode) {
       case 200:
-        dynamic responseJson = jsonDecode(response.body);
-        return responseJson;
       case 201:
-        dynamic responseJson = jsonDecode(response.body);
-        return responseJson;
+        return jsonDecode(response.body);
       case 400:
         throw BadRequestException(response.body.toString());
       case 500:
@@ -78,7 +106,7 @@ class NetworkApiService implements BaseApiServices {
         throw UnauthorisedException(response.body.toString());
       default:
         throw FetchDataException(
-            'Error occured while communicating with server');
+            'Error occurred while communicating with the server');
     }
   }
 }

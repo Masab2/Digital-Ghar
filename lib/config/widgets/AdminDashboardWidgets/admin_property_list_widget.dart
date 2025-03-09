@@ -1,3 +1,4 @@
+import 'package:digital_ghar/config/assets/image_asset.dart';
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,7 @@ class PropertyListItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           image: const DecorationImage(
-            image: NetworkImage('https://via.placeholder.com/100'),
+            image: AssetImage(ImageAsset.images),
             fit: BoxFit.cover,
           ),
         ),

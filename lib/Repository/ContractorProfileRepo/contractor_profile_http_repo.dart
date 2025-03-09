@@ -38,7 +38,7 @@ class ContractorProfileHttpRepo implements ContractorProfileRepo {
       "isActive": isActive,
     };
     final response =
-        await _api.getPostApiResponse(AppUrl.contractorUrlCurd, data);
+        await _api.getPostApiResponse(AppUrl.contractorUrlCurd, data, false);
     return AddContractorProfileModel.fromJson(response);
   }
 
