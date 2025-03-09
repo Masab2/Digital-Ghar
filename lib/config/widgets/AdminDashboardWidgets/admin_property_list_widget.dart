@@ -21,7 +21,7 @@ class PropertyListForSell extends StatelessWidget {
         case Status.completed:
           final house = value.houseForSellApiResponse.data?.data ?? [];
           final itemCount =
-              min(3, house.length); // Ensure only 3 or fewer are shown
+              min(3, house.length);
 
           if (house.isEmpty) {
             return const Center(child: Text("No contractors available"));
