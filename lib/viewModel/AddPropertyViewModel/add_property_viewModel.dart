@@ -24,6 +24,11 @@ class AddPropertyViewmodel with ChangeNotifier {
     }
   }
 
+  void clearImage() {
+    _imagePath = "";
+    notifyListeners();
+  }
+
   final HouseForSellRepo _repo = HouseForSellHttpRepo();
   void addHouseForSellApi(title, description, price, location, category,
       BuildContext context) async {

@@ -3,7 +3,7 @@ import 'package:digital_ghar/config/extenshion/extenshion.dart';
 import 'package:flutter/material.dart';
 
 class AddFeildFormFeildComp extends StatelessWidget {
-  final IconData icon;
+  final IconData? icon;
   final String hintText;
   final TextInputType? textInputType;
   final TextEditingController? controller;
@@ -11,7 +11,7 @@ class AddFeildFormFeildComp extends StatelessWidget {
   final int? maxlines;
   const AddFeildFormFeildComp({
     super.key,
-    required this.icon,
+    this.icon,
     required this.hintText,
     this.textInputType,
     this.controller,
@@ -27,7 +27,7 @@ class AddFeildFormFeildComp extends StatelessWidget {
       validator: validator,
       keyboardType: textInputType,
       decoration: InputDecoration(
-        prefixIcon: Icon(icon, color: AppColor.blueColor),
+        prefixIcon:  icon == null ? null : Icon(icon, color: AppColor.blueColor),
         filled: true,
         hintText: hintText,
         fillColor: Colors.grey[100],

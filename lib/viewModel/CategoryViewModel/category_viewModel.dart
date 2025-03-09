@@ -9,17 +9,32 @@ class CategoryViewmodel with ChangeNotifier {
 
   ApiResponse<CategoryModel> categoryApiResponse = ApiResponse.notStarted();
   int _selectedCategoryIndex = 0;
+  String? selectedCategory = '';
 
   int get selectedCategoryIndex => _selectedCategoryIndex;
 
-  void updateSelectedCategory(int index) {
+  void updateSelectedCategoryIndex(int index) {
     _selectedCategoryIndex = index;
     notifyListeners();
   }
 
+  void updateSelectedCategory(String category) {
+    selectedCategory = category;
+    notifyListeners();
+  }
+
+  // Clear the selected category
+  void clearSelectedCategory() {
+    selectedCategory = '';
+    notifyListeners();
+  }
+
+  List<CategoryList> categoryist = [];
+
   // Set The Api Response
   void setCategoryAPiResponse(ApiResponse<CategoryModel> response) {
     categoryApiResponse = response;
+    categoryist = response.data?.data ?? [];
     notifyListeners();
   }
 

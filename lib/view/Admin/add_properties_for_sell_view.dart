@@ -1,13 +1,13 @@
-import 'dart:io';
-
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/components/RoundBtn/round_btn.dart';
 import 'package:digital_ghar/config/components/TextFormFeilds/add_feild_form_feild_comp.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
+import 'package:digital_ghar/config/widgets/AdminAddPropertyForSellWidgets/select_image_widget.dart';
+import 'package:digital_ghar/config/widgets/widgets.dart';
 import 'package:digital_ghar/viewModel/AddPropertyViewModel/add_property_viewModel.dart';
+import 'package:digital_ghar/viewModel/CategoryViewModel/category_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class AddPropertiesForSellView extends StatefulWidget {
@@ -24,15 +24,13 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
   final priceController = TextEditingController();
   final locationController = TextEditingController();
   final propertyDescriptionController = TextEditingController();
-  String? selectedCategory;
-  final List<String> categories = [
-    'Residential Apartment',
-    'Independent House',
-    'Villa',
-    'Commercial Space',
-    'Plot/Land',
-    'Farmhouse',
-  ];
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<CategoryViewmodel>(context, listen: false).categoryApi();
+    });
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -40,7 +38,6 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
     priceController.dispose();
     locationController.dispose();
     propertyDescriptionController.dispose();
-    selectedCategory = null;
     super.dispose();
   }
 
@@ -48,9 +45,18 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
   Widget build(BuildContext context) {
     final addPropertySellController =
         Provider.of<AddPropertyViewmodel>(context, listen: false);
+    final category =
+        Provider.of<CategoryViewmodel>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: AppBar(
+        leading: InkWell(
+          onTap: (){
+            category.clearSelectedCategory();
+            addPropertySellController.clearImage();
+            Navigator.pop(context);
+          },
+          child: const Icon(Icons.arrow_back_ios)),
         backgroundColor: AppColor.blueColor,
         title: Text(
           'Add Property Sell',
@@ -74,9 +80,8 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
               // Image Selection
               _buildSectionTitle('Property Image'),
               SizedBox(height: context.mh * 0.015),
-              _buildImageSelector(context, addPropertySellController),
+              const SelectAdminImageWidget(),
               SizedBox(height: context.mh * 0.025),
-
               // Property Title
               _buildSectionTitle('Property Title'),
               SizedBox(height: context.mh * 0.015),
@@ -89,7 +94,7 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
               SizedBox(height: context.mh * 0.025),
               _buildSectionTitle('Property Category'),
               SizedBox(height: context.mh * 0.015),
-              _buildCategoryDropdown(context),
+              const AdminAddPropertyForSellCategoryDropdownWidget(),
               SizedBox(height: context.mh * 0.025),
               _buildSectionTitle('Property Location'),
               SizedBox(height: context.mh * 0.015),
@@ -102,19 +107,33 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
               SizedBox(height: context.mh * 0.025),
               _buildSectionTitle('Property Price'),
               SizedBox(height: context.mh * 0.015),
-              const AddFeildFormFeildComp(
-                  icon: Icons.monetization_on, hintText: "Enter Price"),
+              AddFeildFormFeildComp(
+                  icon: Icons.monetization_on,
+                  hintText: "Enter Price",
+                  validator: (val) {
+                    if (val!.isEmpty) {
+                      return 'Price cannot be empty';
+                    } else if (val.length <= 0) {
+                      return 'Price cannot be empty';
+                    } else {
+                      return null;
+                    }
+                  }),
               SizedBox(height: context.mh * 0.025),
               _buildSectionTitle('Property Description'),
               SizedBox(height: context.mh * 0.015),
-              const AddFeildFormFeildComp(
-                  maxlines: 5,
-                  icon: Icons.description,
-                  hintText: "Enter Property Description"),
+              AddFeildFormFeildComp(
+                maxlines: 5,
+                hintText: "Enter Property Description",
+                validator: (val) =>
+                    val!.isEmpty ? 'Description cannot be empty' : null,
+              ),
               SizedBox(height: context.mh * 0.035),
               RoundBtn(
                 text: "Add Property",
-                onTap: () {},
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {}
+                },
                 radius: 10,
               ),
               SizedBox(height: context.mh * 0.025),
@@ -134,91 +153,5 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
         fontWeight: FontWeight.w600,
       ),
     );
-  }
-
-  Widget _buildCategoryDropdown(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: context.mw * 0.04),
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: DropdownButtonFormField<String>(
-        value: selectedCategory,
-        isExpanded: true,
-        icon: const Icon(Icons.keyboard_arrow_down, color: AppColor.blueColor),
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.category, color: AppColor.blueColor),
-          border: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-        ),
-        hint: const Text('Select property category'),
-        validator: (value) => value == null ? 'Please select a category' : null,
-        items: categories.map((String category) {
-          return DropdownMenuItem<String>(
-            value: category,
-            child: Text(category),
-          );
-        }).toList(),
-        onChanged: (String? newValue) {
-          setState(() {
-            selectedCategory = newValue;
-          });
-        },
-      ),
-    );
-  }
-
-  Widget _buildImageSelector(
-      BuildContext context, AddPropertyViewmodel viewModel) {
-    return Consumer<AddPropertyViewmodel>(builder: (context, value, child) {
-      return InkWell(
-        onTap: () {
-          viewModel.getImageFromGallery(ImageSource.gallery);
-        },
-        child: viewModel.imagePath == ""
-            ? Container(
-                height: context.mh * 0.2,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.grey[300]!, width: 1),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.add_photo_alternate_outlined,
-                      size: context.mh * 0.05,
-                      color: AppColor.blueColor,
-                    ),
-                    SizedBox(height: context.mh * 0.015),
-                    Text(
-                      'Tap to add property image',
-                      style: GoogleFonts.aBeeZee(
-                        color: Colors.grey[600],
-                        fontSize: context.mh * 0.016,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            : ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image(
-                  height: context.mh * 0.2,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  image: FileImage(
-                    File(
-                      viewModel.imagePath.toString(),
-                    ),
-                  ),
-                ),
-              ),
-      );
-    });
   }
 }

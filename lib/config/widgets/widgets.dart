@@ -14,3 +14,7 @@ export './HomeWidgets/home_category_widget.dart';
 export './HomeWidgets/home_property_display_widget.dart';
 
 export './RentPropertiesWidget/rent_properties_display_widget.dart';
+
+
+// Admin Widgets
+export './AdminAddPropertyForSellWidgets/admin_add_property_for_sell_category_dropdown_widget.dart';

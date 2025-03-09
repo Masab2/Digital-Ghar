@@ -132,6 +132,7 @@ class AdminAddDialog extends StatelessWidget {
                     subtitle: 'List a new property for sale or rent',
                     icon: IconlyBold.home,
                     onTap: () {
+                      Navigator.pop(context);
                       Navigator.pushNamed(
                           context, RoutesNames.addPropertiesForSellView);
                     },

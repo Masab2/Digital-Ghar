@@ -60,7 +60,7 @@ class HomeCategoryWidget extends StatelessWidget {
                   bool isSelected = value.selectedCategoryIndex == index;
                   return GestureDetector(
                     onTap: () {
-                      value.updateSelectedCategory(index);
+                      value.updateSelectedCategoryIndex(index);
                       houseProvider.filterHousesByChips(
                         index,
                         data?.name,
