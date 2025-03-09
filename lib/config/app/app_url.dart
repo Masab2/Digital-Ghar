@@ -35,4 +35,7 @@ class AppUrl {
 
   // Add House For Sale Url
   static String addhouseForSaleUrl = "${baseUrl}api/add-house-for-sale";
+
+  // Delete House
+  static String deleteHouseForSellUrl(id) => "${baseUrl}api/delete-house?id=$id";
 }

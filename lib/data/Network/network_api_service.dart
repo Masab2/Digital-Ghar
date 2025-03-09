@@ -89,6 +89,89 @@ class NetworkApiService implements BaseApiServices {
     return responseJson;
   }
 
+  @override
+  Future getPutApiResponse(String url, dynamic data, bool image) async {
+    if (kDebugMode) {
+      print('PUT Request: $url');
+      print('Payload Type: ${data.runtimeType}');
+    }
+
+    dynamic responseJson;
+    try {
+      if (image == true) {
+        var request = http.MultipartRequest('PUT', Uri.parse(url))
+          ..headers.addAll({
+            "Accept": "application/json",
+          });
+
+        data.forEach((key, value) {
+          if (key != 'image') {
+            request.fields[key] = value.toString();
+          }
+        });
+
+        if (data['image'] != null && data['image'].isNotEmpty) {
+          Uint8List imageBytes = base64Decode(data['image']);
+          String mimeType =
+              lookupMimeType('', headerBytes: imageBytes) ?? "image/jpeg";
+
+          request.files.add(http.MultipartFile.fromBytes(
+            'image',
+            imageBytes,
+            filename: 'updated_image.jpg',
+            contentType: MediaType.parse(mimeType),
+          ));
+        }
+
+        final streamedResponse = await request.send();
+        final response = await http.Response.fromStream(streamedResponse);
+        responseJson = returnResponse(response);
+      } else {
+        final response = await http.put(
+          Uri.parse(url),
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: jsonEncode(data),
+        );
+
+        responseJson = returnResponse(response);
+      }
+    } on SocketException {
+      throw NoInternetException('No Internet Connection');
+    } on TimeoutException {
+      throw FetchDataException('Network Request timed out');
+    }
+
+    return responseJson;
+  }
+
+  @override
+  Future getdeleteApiResponse(String url) async {
+    if (kDebugMode) {
+      print('DELETE Request: $url');
+    }
+
+    dynamic responseJson;
+    try {
+      final response = await http.delete(
+        Uri.parse(url),
+        headers: {
+          "Accept": "application/json",
+        },
+      ).timeout(const Duration(seconds: 20));
+
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw NoInternetException('No Internet Connection');
+    } on TimeoutException {
+      throw FetchDataException('Network Request timed out');
+    }
+
+    return responseJson;
+  }
+
   dynamic returnResponse(http.Response response) {
     if (kDebugMode) {
       print('Status Code: ${response.statusCode}');

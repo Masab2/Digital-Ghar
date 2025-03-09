@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:digital_ghar/Model/HouseForSaleModel/house_for_sale_model.dart';
 import 'package:digital_ghar/Model/SuccessModel/success_model.dart';
 import 'package:digital_ghar/Repository/HouseForSellRepo/house_for_sell_repo.dart';
@@ -25,13 +23,14 @@ class HouseForSellHttpRepo implements HouseForSellRepo {
       "image": image,
       "category": category,
     };
-    log(data['title']);
-    log(data['description']);
-    log(data['price']);
-    log(data['location']);
-
     final response =
         await _api.getPostApiResponse(AppUrl.addhouseForSaleUrl, data, true);
+    return SuccessModel.fromJson(response);
+  }
+  
+  @override
+  Future<SuccessModel> deleteHouseForSaleApi(id) async{
+    final response = await _api.getdeleteApiResponse(AppUrl.deleteHouseForSellUrl(id));
     return SuccessModel.fromJson(response);
   }
 }

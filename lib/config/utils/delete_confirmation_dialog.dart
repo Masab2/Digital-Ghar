@@ -1,7 +1,7 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
 
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
+import 'package:digital_ghar/viewModel/AddPropertyViewModel/add_property_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
@@ -9,8 +9,8 @@ import 'package:iconly/iconly.dart';
 class DeleteConfirmationDialog {
   static void showDeleteConfirmationDialog(
     BuildContext context,
-    final Function(int)? onDelete,
-    int index,
+    AddPropertyViewmodel addPropertyViewmodel,
+    String propertyId,
   ) {
     showDialog(
       context: context,
@@ -109,8 +109,8 @@ class DeleteConfirmationDialog {
                     SizedBox(width: context.mw * 0.02),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pop(context);
-                        onDelete.call(index);
+                        addPropertyViewmodel.deleteHouseForSaleApi(propertyId, context);
+                        
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.redAccent,
