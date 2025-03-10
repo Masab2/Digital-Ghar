@@ -51,6 +51,8 @@ class AddPropertyViewmodel with ChangeNotifier {
           .addhouseForSaleApi(
               title, description, price, location, _imageBase64, category)
           .then((value) {
+        Provider.of<HouseForSellViewModel>(context, listen: false)
+            .houseForSellApi();
         Utils.showCustomSnackBar(context, value.message ?? '', "Success");
       }).onError((error, stackTrace) {
         log(error.toString());
@@ -63,7 +65,8 @@ class AddPropertyViewmodel with ChangeNotifier {
   void deleteHouseForSaleApi(id, BuildContext context) async {
     try {
       await _repo.deleteHouseForSaleApi(id).then((value) {
-        Provider.of<HouseForSellViewModel>(context, listen: false).houseForSellApi();
+        Provider.of<HouseForSellViewModel>(context, listen: false)
+            .houseForSellApi();
         Utils.showCustomSnackBar(context, value.message ?? '', "Success");
       }).onError((error, stackTrace) {
         log(error.toString());

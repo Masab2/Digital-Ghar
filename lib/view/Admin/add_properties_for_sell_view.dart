@@ -146,6 +146,11 @@ class _AddPropertiesForSellViewState extends State<AddPropertiesForSellView> {
                       context,
                     );
                   }
+                  propertyTitleController.clear();
+                  propertyDescriptionController.clear();
+                  priceController.clear();
+                  locationController.clear();
+                  category.selectedCategory = "";
                 },
                 radius: 10,
               ),
