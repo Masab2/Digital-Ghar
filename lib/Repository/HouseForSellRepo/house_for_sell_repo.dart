@@ -5,5 +5,6 @@ abstract class HouseForSellRepo {
   Future<HouseForSaleModel> houseForSellApi();
   Future<SuccessModel> addhouseForSaleApi(
       title, description, price, location, image, category);
-  Future<SuccessModel> deleteHouseForSaleApi(id);    
+  Future<SuccessModel> deleteHouseForSaleApi(id);
+  Future<SuccessModel> updateHouseForSaleApi(id, title, description, price, location, category);
 }

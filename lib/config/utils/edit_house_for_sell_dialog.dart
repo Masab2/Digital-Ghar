@@ -51,10 +51,14 @@ class _EditPropertyDialogState extends State<EditPropertyDialog> {
   void initState() {
     super.initState();
     // Initialize controllers with existing property data
-    propertyTitleController = TextEditingController(text: widget.propertyData['title'] ?? '');
-    propertyDescriptionController = TextEditingController(text: widget.propertyData['description'] ?? '');
-    propertyPriceController = TextEditingController(text: widget.propertyData['price']?.toString() ?? 'No Price');
-    propertyLocationController = TextEditingController(text: widget.propertyData['location'] ?? '');
+    propertyTitleController =
+        TextEditingController(text: widget.propertyData['title'] ?? '');
+    propertyDescriptionController =
+        TextEditingController(text: widget.propertyData['description'] ?? '');
+    propertyPriceController = TextEditingController(
+        text: widget.propertyData['price']?.toString() ?? 'No Price');
+    propertyLocationController =
+        TextEditingController(text: widget.propertyData['location'] ?? '');
   }
 
   @override
@@ -65,8 +69,6 @@ class _EditPropertyDialogState extends State<EditPropertyDialog> {
     propertyLocationController.dispose();
     super.dispose();
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -190,7 +192,9 @@ class _EditPropertyDialogState extends State<EditPropertyDialog> {
           hintText: "Enter Property Price",
           validator: (val) {
             if (val!.isEmpty) return 'Price cannot be empty';
-            if (double.tryParse(val) == null) return 'Please enter a valid price';
+            if (double.tryParse(val) == null) {
+              return 'Please enter a valid price';
+            }
             return null;
           },
         ),
@@ -205,7 +209,8 @@ class _EditPropertyDialogState extends State<EditPropertyDialog> {
         AddFeildFormFeildComp(
           controller: propertyDescriptionController,
           hintText: "Enter Property Description",
-          validator: (val) => val!.isEmpty ? 'Description cannot be empty' : null,
+          validator: (val) =>
+              val!.isEmpty ? 'Description cannot be empty' : null,
         ),
       ],
     );
@@ -245,7 +250,15 @@ class _EditPropertyDialogState extends State<EditPropertyDialog> {
           ),
           ElevatedButton(
             onPressed: () {
-
+              widget.addPropertyViewmodel.updateHouseForSaleApi(
+                propertyTitleController.text,
+                propertyDescriptionController.text,
+                propertyPriceController.text,
+                propertyLocationController.text,
+                widget.propertyData['category'] ?? '',
+                context,
+                widget.propertyId,
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColor.blueColor,
@@ -264,7 +277,8 @@ class _EditPropertyDialogState extends State<EditPropertyDialog> {
                     height: context.mw * 0.05,
                     child: const CircularProgressIndicator(
                       strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(AppColor.whiteColor),
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(AppColor.whiteColor),
                     ),
                   )
                 : Row(

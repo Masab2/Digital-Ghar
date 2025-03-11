@@ -33,4 +33,17 @@ class HouseForSellHttpRepo implements HouseForSellRepo {
     final response = await _api.getdeleteApiResponse(AppUrl.deleteHouseForSellUrl(id));
     return SuccessModel.fromJson(response);
   }
+  
+  @override
+  Future<SuccessModel> updateHouseForSaleApi(id, title, description, price, location, category) async{
+    Map<String, dynamic> data = {
+      "title": title,
+      "description": description,
+      "price": price,
+      "location": location,
+      "category": category,
+    };
+    final response = await _api.getPutApiResponse(AppUrl.updateHouseForSellUrl(id), data, false);
+    return SuccessModel.fromJson(response);
+  }
 }

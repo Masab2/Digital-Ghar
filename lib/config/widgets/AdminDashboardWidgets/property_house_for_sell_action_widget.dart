@@ -16,6 +16,7 @@ class PropertyOptionsMenu extends StatelessWidget {
   final String description;
   final String price;
   final String location;
+  final String category;
 
   const PropertyOptionsMenu({
     super.key,
@@ -24,7 +25,7 @@ class PropertyOptionsMenu extends StatelessWidget {
     required this.title,
     required this.description,
     required this.price,
-    required this.location,
+    required this.location, required this.category,
   });
 
   @override
@@ -64,6 +65,7 @@ class PropertyOptionsMenu extends StatelessWidget {
             "description": description,
             "price": price,
             "location": location,
+            "category": category,
           };
           EditPropertyDialog.show(
             context,

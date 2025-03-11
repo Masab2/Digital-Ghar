@@ -77,4 +77,25 @@ class AddPropertyViewmodel with ChangeNotifier {
       Utils.showCustomSnackBar(context, e.toString(), "Error");
     }
   }
+
+  // Update House for sale
+  void updateHouseForSaleApi(title, description, price, location, category,
+      BuildContext context, id) async {
+    try {
+      await _repo
+          .updateHouseForSaleApi(
+              id, title, description, price, location, category)
+          .then((value) {
+        Provider.of<HouseForSellViewModel>(context, listen: false)
+            .houseForSellApi();
+        Navigator.pop(context);
+      }).onError((error, stackTrace) {
+        log(error.toString());
+        Utils.showCustomSnackBar(context, error.toString(), "Error");
+      });
+    } catch (e) {
+      log(e.toString());
+      Utils.showCustomSnackBar(context, e.toString(), "Error");
+    }
+  }
 }

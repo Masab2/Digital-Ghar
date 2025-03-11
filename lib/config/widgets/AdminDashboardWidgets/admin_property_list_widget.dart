@@ -46,7 +46,7 @@ class PropertyListForSell extends StatelessWidget {
                 addPropertyViewmodel: addPropertyViewmodel,
                 propertyId: house[index].id,
                 price: house[index].price.toString(),
-                description: house[index].description,
+                description: house[index].description, category: house[index].category,
               ),
             ),
           );
@@ -69,6 +69,7 @@ class PropertyListItemHouseForSell extends StatelessWidget {
   final String propertyId;
   final String price;
   final String description;
+  final String category;
   const PropertyListItemHouseForSell({
     super.key,
     required this.index,
@@ -77,7 +78,7 @@ class PropertyListItemHouseForSell extends StatelessWidget {
     required this.addPropertyViewmodel,
     required this.propertyId,
     required this.price,
-    required this.description,
+    required this.description, required this.category,
   });
 
   @override
@@ -115,6 +116,7 @@ class PropertyListItemHouseForSell extends StatelessWidget {
         description: description,
         price: price,
         location: loaction,
+        category: category,
       ),
     );
   }
