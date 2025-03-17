@@ -217,6 +217,8 @@ mixin _$ContractorProfileModelData {
   String get contractorId => throw _privateConstructorUsedError;
   @JsonKey(name: "createdAt")
   String get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: "companyLogo")
+  String get companyLogo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -245,7 +247,8 @@ abstract class $ContractorProfileModelDataCopyWith<$Res> {
       GetContractorPermissions? contractorPermissions,
       @JsonKey(name: "isActive") bool isActive,
       @JsonKey(name: "_id") String contractorId,
-      @JsonKey(name: "createdAt") String createdAt});
+      @JsonKey(name: "createdAt") String createdAt,
+      @JsonKey(name: "companyLogo") String companyLogo});
 
   $GetContractorRatingsCopyWith<$Res>? get ratings;
   $GetContractorPermissionsCopyWith<$Res>? get contractorPermissions;
@@ -278,6 +281,7 @@ class _$ContractorProfileModelDataCopyWithImpl<$Res,
     Object? isActive = null,
     Object? contractorId = null,
     Object? createdAt = null,
+    Object? companyLogo = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -332,6 +336,10 @@ class _$ContractorProfileModelDataCopyWithImpl<$Res,
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
+      companyLogo: null == companyLogo
+          ? _value.companyLogo
+          : companyLogo // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -384,7 +392,8 @@ abstract class _$$ContractorProfileModelDataImplCopyWith<$Res>
       GetContractorPermissions? contractorPermissions,
       @JsonKey(name: "isActive") bool isActive,
       @JsonKey(name: "_id") String contractorId,
-      @JsonKey(name: "createdAt") String createdAt});
+      @JsonKey(name: "createdAt") String createdAt,
+      @JsonKey(name: "companyLogo") String companyLogo});
 
   @override
   $GetContractorRatingsCopyWith<$Res>? get ratings;
@@ -418,6 +427,7 @@ class __$$ContractorProfileModelDataImplCopyWithImpl<$Res>
     Object? isActive = null,
     Object? contractorId = null,
     Object? createdAt = null,
+    Object? companyLogo = null,
   }) {
     return _then(_$ContractorProfileModelDataImpl(
       name: null == name
@@ -472,6 +482,10 @@ class __$$ContractorProfileModelDataImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
+      companyLogo: null == companyLogo
+          ? _value.companyLogo
+          : companyLogo // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -492,7 +506,8 @@ class _$ContractorProfileModelDataImpl implements _ContractorProfileModelData {
       @JsonKey(name: "permissions") this.contractorPermissions,
       @JsonKey(name: "isActive") this.isActive = false,
       @JsonKey(name: "_id") this.contractorId = "",
-      @JsonKey(name: "createdAt") this.createdAt = ""});
+      @JsonKey(name: "createdAt") this.createdAt = "",
+      @JsonKey(name: "companyLogo") this.companyLogo = ""});
 
   factory _$ContractorProfileModelDataImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -537,10 +552,13 @@ class _$ContractorProfileModelDataImpl implements _ContractorProfileModelData {
   @override
   @JsonKey(name: "createdAt")
   final String createdAt;
+  @override
+  @JsonKey(name: "companyLogo")
+  final String companyLogo;
 
   @override
   String toString() {
-    return 'ContractorProfileModelData(name: $name, email: $email, phone: $phone, address: $address, company: $company, regNo: $regNo, role: $role, projectsCompleted: $projectsCompleted, ratings: $ratings, contractorPermissions: $contractorPermissions, isActive: $isActive, contractorId: $contractorId, createdAt: $createdAt)';
+    return 'ContractorProfileModelData(name: $name, email: $email, phone: $phone, address: $address, company: $company, regNo: $regNo, role: $role, projectsCompleted: $projectsCompleted, ratings: $ratings, contractorPermissions: $contractorPermissions, isActive: $isActive, contractorId: $contractorId, createdAt: $createdAt, companyLogo: $companyLogo)';
   }
 
   @override
@@ -565,7 +583,9 @@ class _$ContractorProfileModelDataImpl implements _ContractorProfileModelData {
             (identical(other.contractorId, contractorId) ||
                 other.contractorId == contractorId) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.companyLogo, companyLogo) ||
+                other.companyLogo == companyLogo));
   }
 
   @JsonKey(ignore: true)
@@ -584,7 +604,8 @@ class _$ContractorProfileModelDataImpl implements _ContractorProfileModelData {
       contractorPermissions,
       isActive,
       contractorId,
-      createdAt);
+      createdAt,
+      companyLogo);
 
   @JsonKey(ignore: true)
   @override
@@ -617,7 +638,8 @@ abstract class _ContractorProfileModelData
           final GetContractorPermissions? contractorPermissions,
           @JsonKey(name: "isActive") final bool isActive,
           @JsonKey(name: "_id") final String contractorId,
-          @JsonKey(name: "createdAt") final String createdAt}) =
+          @JsonKey(name: "createdAt") final String createdAt,
+          @JsonKey(name: "companyLogo") final String companyLogo}) =
       _$ContractorProfileModelDataImpl;
 
   factory _ContractorProfileModelData.fromJson(Map<String, dynamic> json) =
@@ -662,6 +684,9 @@ abstract class _ContractorProfileModelData
   @override
   @JsonKey(name: "createdAt")
   String get createdAt;
+  @override
+  @JsonKey(name: "companyLogo")
+  String get companyLogo;
   @override
   @JsonKey(ignore: true)
   _$$ContractorProfileModelDataImplCopyWith<_$ContractorProfileModelDataImpl>

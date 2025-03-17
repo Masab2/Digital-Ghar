@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 class AppUrl {
-  static const String baseUrl = 'http://127.0.0.1:8000/';
-  // static String baseUrl = "http://192.168.0.107:8000/";
+  // static const String baseUrl = 'http://127.0.0.1:8000/';
+  static String baseUrl = "http://192.168.0.104:8000/";
   // static String baseUrl =
   //     "https://digital-ghar-backend-git-main-masab2s-projects.vercel.app/";
 

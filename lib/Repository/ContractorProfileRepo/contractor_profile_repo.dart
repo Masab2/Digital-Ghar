@@ -13,6 +13,7 @@ abstract class ContractorProfileRepo {
     canManageTeam,
     canEditProfile,
     isActive,
+    image,
   );
 
   // Get Contractor Profile

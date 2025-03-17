@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:digital_ghar/Model/GetAllContractorProfileModel/get_all_contractor_profile_model.dart';
@@ -7,6 +9,7 @@ import 'package:digital_ghar/Repository/ContractorProfileRepo/contractor_profile
 import 'package:digital_ghar/config/utils/utils.dart';
 import 'package:digital_ghar/data/Response/api_response.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ContractorProfileViewmodel with ChangeNotifier {
   final ContractorProfileRepo _contractorProfileRepo =
@@ -45,6 +48,35 @@ class ContractorProfileViewmodel with ChangeNotifier {
     notifyListeners();
   }
 
+  final ImagePicker _picker = ImagePicker();
+  String _imagePath = '';
+  String _imageBase64 = '';
+
+  String get imageBase64 => _imageBase64;
+
+  String get imagePath => _imagePath;
+
+  Future<void> getImageFromGallery(ImageSource source) async {
+    final XFile? image =
+        await _picker.pickImage(source: source, imageQuality: 80);
+
+    if (image != null) {
+      _imagePath = image.path;
+      File file = File(image.path);
+      List<int> imageBytes = await file.readAsBytes();
+      _imageBase64 = base64Encode(imageBytes);
+      notifyListeners();
+    } else {
+      log('No Image Selected');
+    }
+  }
+
+  void clearImage() {
+    _imagePath = "";
+    _imageBase64 = "";
+    notifyListeners();
+  }
+
   // Add ContractorProfile
   void addContractorProfileApi(
     fullName,
@@ -60,34 +92,40 @@ class ContractorProfileViewmodel with ChangeNotifier {
   ) async {
     setLoading(true);
     String password = generateRandomPassword();
-    _contractorProfileRepo
-        .addContraterProfileApi(
-      fullName.text,
-      email.text,
-      phone.text,
-      address.text,
-      password,
-      company.text,
-      regNo.text,
-      canManageTeam,
-      canEditProfile,
-      isActive,
-    )
-        .then((value) {
-      setLoading(false);
+    if (_imageBase64 == "") {
       Utils.showCustomSnackBar(
-          context, "Contractor Profile Created Sucessfully", "Succsess");
-      fullName.clear();
-      email.clear();
-      phone.clear();
-      address.clear();
-      company.clear();
-      regNo.clear();
-    }).onError((error, stackTrace) {
-      setLoading(false);
-      log(error.toString());
-      Utils.showCustomSnackBar(context, error.toString(), "Error");
-    });
+          context, "Please Select the Company Logo", "Validation Error");
+    } else {
+      _contractorProfileRepo
+          .addContraterProfileApi(
+        fullName.text,
+        email.text,
+        phone.text,
+        address.text,
+        password,
+        company.text,
+        regNo.text,
+        canManageTeam,
+        canEditProfile,
+        isActive,
+        _imageBase64,
+      )
+          .then((value) {
+        setLoading(false);
+        Utils.showCustomSnackBar(
+            context, "Contractor Profile Created Sucessfully", "Succsess");
+        fullName.clear();
+        email.clear();
+        phone.clear();
+        address.clear();
+        company.clear();
+        regNo.clear();
+      }).onError((error, stackTrace) {
+        setLoading(false);
+        log(error.toString());
+        Utils.showCustomSnackBar(context, error.toString(), "Error");
+      });
+    }
   }
 
   // Get Contractor Profile

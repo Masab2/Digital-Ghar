@@ -20,6 +20,7 @@ class ContractorProfileHttpRepo implements ContractorProfileRepo {
     canManageTeam,
     canEditProfile,
     isActive,
+    image,
   ) async {
     Map<String, dynamic> data = {
       "name": fullName,
@@ -36,9 +37,10 @@ class ContractorProfileHttpRepo implements ContractorProfileRepo {
         "canEditProfile": canEditProfile
       },
       "isActive": isActive,
+      "image": image,
     };
     final response =
-        await _api.getPostApiResponse(AppUrl.contractorUrlCurd, data, false);
+        await _api.getPostApiResponse(AppUrl.contractorUrlCurd, data, true);
     return AddContractorProfileModel.fromJson(response);
   }
 

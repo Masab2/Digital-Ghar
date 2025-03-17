@@ -29,6 +29,7 @@ class ContractorProfileModelData with _$ContractorProfileModelData {
     @JsonKey(name: "isActive") @Default(false) bool isActive,
     @JsonKey(name: "_id") @Default("") String contractorId,
     @JsonKey(name: "createdAt") @Default("") String createdAt,
+    @JsonKey(name: "companyLogo") @Default("") String companyLogo,
   }) = _ContractorProfileModelData;
 
   factory ContractorProfileModelData.fromJson(Map<String, dynamic> json) =>

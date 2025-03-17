@@ -43,6 +43,7 @@ _$ContractorProfileModelDataImpl _$$ContractorProfileModelDataImplFromJson(
       isActive: json['isActive'] as bool? ?? false,
       contractorId: json['_id'] as String? ?? "",
       createdAt: json['createdAt'] as String? ?? "",
+      companyLogo: json['companyLogo'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$ContractorProfileModelDataImplToJson(
@@ -61,6 +62,7 @@ Map<String, dynamic> _$$ContractorProfileModelDataImplToJson(
       'isActive': instance.isActive,
       '_id': instance.contractorId,
       'createdAt': instance.createdAt,
+      'companyLogo': instance.companyLogo,
     };
 
 _$GetContractorRatingsImpl _$$GetContractorRatingsImplFromJson(

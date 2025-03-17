@@ -44,8 +44,8 @@ class ContractorCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   image: DecorationImage(
-                    image: AssetImage(ImageAsset.logo),
-                    fit: BoxFit.cover,
+                    image: NetworkImage(contractor.companyLogo),
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),

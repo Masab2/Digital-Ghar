@@ -1,5 +1,6 @@
 import 'package:digital_ghar/config/components/RoundBtn/round_btn.dart';
 import 'package:digital_ghar/config/components/TextFormFeilds/add_feild_form_feild_comp.dart';
+import 'package:digital_ghar/config/widgets/AddContractorAdminWidgets/select_company_logo_widget.dart';
 import 'package:digital_ghar/viewModel/ContractorProfileViewModel/contractor_profile_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -72,80 +73,84 @@ class _AddContractorProfileViewState extends State<AddContractorProfileView> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.mw * 0.05),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              SizedBox(height: context.mh * 0.03),
-              AddFeildFormFeildComp(
-                icon: IconlyLight.profile,
-                hintText: "Full Name",
-                controller: contractorFullName,
-                validator: (value) => _validateField(value, "Full Name"),
-              ),
-              SizedBox(height: context.mh * 0.02),
-              AddFeildFormFeildComp(
-                icon: IconlyLight.message,
-                hintText: "Email",
-                controller: emailController,
-                validator: (value) => _validateField(value, "Email"),
-              ),
-              SizedBox(height: context.mh * 0.02),
-              AddFeildFormFeildComp(
-                icon: IconlyLight.profile,
-                hintText: "Phone",
-                controller: phone,
-                validator: (value) => _validatePhone(value),
-              ),
-              SizedBox(height: context.mh * 0.02),
-              AddFeildFormFeildComp(
-                icon: IconlyLight.call,
-                hintText: "Company",
-                controller: company,
-                validator: (value) => _validateField(value, "Company"),
-              ),
-              SizedBox(height: context.mh * 0.02),
-              AddFeildFormFeildComp(
-                icon: IconlyLight.location,
-                hintText: "Address",
-                controller: address,
-                validator: (value) => _validateField(value, "Address"),
-              ),
-              SizedBox(height: context.mh * 0.02),
-              AddFeildFormFeildComp(
-                icon: IconlyLight.document,
-                hintText: "Registration No",
-                controller: regNo,
-                validator: (value) => _validateField(value, "Registration No"),
-              ),
-              SizedBox(height: context.mh * 0.04),
-              Consumer<ContractorProfileViewmodel>(
-                  builder: (context, value, child) {
-                return RoundBtn(
-                  loading: value.isLoading,
-                  text: "Submit",
-                  onTap: () {
-                    if (_formKey.currentState!.validate()) {
-                      contractorProfileViewModel.addContractorProfileApi(
-                        contractorFullName,
-                        emailController,
-                        phone,
-                        address,
-                        company,
-                        regNo,
-                        true,
-                        true,
-                        true,
-                        context,
-                      );
-                    }
-                  },
-                  radius: 10,
-                );
-              }),
-            ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: context.mw * 0.05),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                SizedBox(height: context.mh * 0.03),
+                const SelectAdminImageWidgetContracter(),
+                SizedBox(height: context.mh * 0.02),
+                AddFeildFormFeildComp(
+                  icon: IconlyLight.profile,
+                  hintText: "Full Name",
+                  controller: contractorFullName,
+                  validator: (value) => _validateField(value, "Full Name"),
+                ),
+                SizedBox(height: context.mh * 0.02),
+                AddFeildFormFeildComp(
+                  icon: IconlyLight.message,
+                  hintText: "Email",
+                  controller: emailController,
+                  validator: (value) => _validateField(value, "Email"),
+                ),
+                SizedBox(height: context.mh * 0.02),
+                AddFeildFormFeildComp(
+                  icon: IconlyLight.profile,
+                  hintText: "Phone",
+                  controller: phone,
+                  validator: (value) => _validatePhone(value),
+                ),
+                SizedBox(height: context.mh * 0.02),
+                AddFeildFormFeildComp(
+                  icon: IconlyLight.call,
+                  hintText: "Company",
+                  controller: company,
+                  validator: (value) => _validateField(value, "Company"),
+                ),
+                SizedBox(height: context.mh * 0.02),
+                AddFeildFormFeildComp(
+                  icon: IconlyLight.location,
+                  hintText: "Address",
+                  controller: address,
+                  validator: (value) => _validateField(value, "Address"),
+                ),
+                SizedBox(height: context.mh * 0.02),
+                AddFeildFormFeildComp(
+                  icon: IconlyLight.document,
+                  hintText: "Registration No",
+                  controller: regNo,
+                  validator: (value) => _validateField(value, "Registration No"),
+                ),
+                SizedBox(height: context.mh * 0.04),
+                Consumer<ContractorProfileViewmodel>(
+                    builder: (context, value, child) {
+                  return RoundBtn(
+                    loading: value.isLoading,
+                    text: "Submit",
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        contractorProfileViewModel.addContractorProfileApi(
+                          contractorFullName,
+                          emailController,
+                          phone,
+                          address,
+                          company,
+                          regNo,
+                          true,
+                          true,
+                          true,
+                          context,
+                        );
+                      }
+                    },
+                    radius: 10,
+                  );
+                }),
+              ],
+            ),
           ),
         ),
       ),
