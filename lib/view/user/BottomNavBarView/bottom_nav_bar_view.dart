@@ -1,5 +1,6 @@
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
+import 'package:digital_ghar/view/user/Contractors/contractors_view.dart';
 import 'package:digital_ghar/view/view.dart';
 import 'package:digital_ghar/viewModel/BottomNavBarViewModel/bottom_nav_bar_viewModel.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class _CustomizedBottomNavBarState extends State<CustomizedBottomNavBar> {
               physics: const NeverScrollableScrollPhysics(), // Disable sliding
               children: const [
                 HomeView(),
-                Scaffold(),
+                ContractorsView(),
                 Scaffold(),
                 Scaffold(),
                 ProfileView(),
@@ -50,14 +51,12 @@ class _CustomizedBottomNavBarState extends State<CustomizedBottomNavBar> {
             );
           },
         ),
-        bottomNavigationBar: const SafeArea(
-          child: _MainWrapperBottomNavBar(
-            "Home",
-            "Contractors",
-            "Design",
-            "Chat",
-            "Profile",
-          ),
+        bottomNavigationBar: const _MainWrapperBottomNavBar(
+          "Home",
+          "Contractors",
+          "Design",
+          "Chat",
+          "Profile",
         ),
       ),
     );
@@ -105,7 +104,7 @@ class _MainWrapperBottomNavBar extends StatelessWidget {
                         context,
                         defaultIcon: IconlyLight.work,
                         page: 1,
-                        label: "Construction",
+                        label: "Contractors",
                         filledIcon: IconlyBold.work,
                         currentPage: currentPage,
                       ),
@@ -115,14 +114,6 @@ class _MainWrapperBottomNavBar extends StatelessWidget {
                         page: 2,
                         label: "Design",
                         filledIcon: IconlyBold.editSquare,
-                        currentPage: currentPage,
-                      ),
-                      _bottomAppBarItem(
-                        context,
-                        defaultIcon: IconlyLight.chat,
-                        page: 3,
-                        label: "Chats",
-                        filledIcon: IconlyBold.chat,
                         currentPage: currentPage,
                       ),
                       _bottomAppBarItem(
