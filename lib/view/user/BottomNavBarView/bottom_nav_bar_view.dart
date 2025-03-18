@@ -1,6 +1,5 @@
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
-import 'package:digital_ghar/view/user/Contractors/contractors_view.dart';
 import 'package:digital_ghar/view/view.dart';
 import 'package:digital_ghar/viewModel/BottomNavBarViewModel/bottom_nav_bar_viewModel.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +43,7 @@ class _CustomizedBottomNavBarState extends State<CustomizedBottomNavBar> {
               children: const [
                 HomeView(),
                 ContractorsView(),
-                Scaffold(),
+                DesignsListView(),
                 Scaffold(),
                 ProfileView(),
               ],

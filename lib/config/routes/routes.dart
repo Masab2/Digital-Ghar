@@ -53,6 +53,15 @@ class Routes {
             rentData: rentProperty,
           ),
         );
+      case RoutesNames.designDetailScreen:
+        final Map<String, dynamic> arguments = args as Map<String, dynamic>;
+        final design = arguments['design'] as Map<String, String>;
+
+        return MaterialPageRoute(
+          builder: (_) => DesignDetailView(
+            design: design,
+          ),
+        );
       // Contractor Routes
       case RoutesNames.contractorDashboardView:
         return MaterialPageRoute(

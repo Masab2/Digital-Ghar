@@ -35,7 +35,7 @@ class _ContractorsViewState extends State<ContractorsView> {
         title: Text(
           'Contractors',
           style: GoogleFonts.poppins(
-            fontSize: context.mh * 0.024,
+            fontSize: context.mh * 0.022,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -46,6 +46,10 @@ class _ContractorsViewState extends State<ContractorsView> {
         child: Consumer<ContractorProfileViewmodel>(
           builder: (context, viewModel, child) {
             switch (viewModel.apiResponse.status) {
+              case Status.loading:
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               case Status.completed:
                 return Column(
                   children: [

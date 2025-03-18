@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:digital_ghar/Repository/AuthRepo/auth_repo.dart';
+import 'package:digital_ghar/config/Global/gobal.dart';
+import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/config/utils/utils.dart';
 import 'package:digital_ghar/main.dart';
+import 'package:digital_ghar/service/SessionController/session_controller.dart';
 import 'package:flutter/material.dart';
 
 class RegisterViewModel with ChangeNotifier {
@@ -28,7 +33,7 @@ class RegisterViewModel with ChangeNotifier {
     _registerRepo.registerApi(data).then(
       (value) {
         setLoading(false);
-        
+
         Navigator.pop(context);
       },
     ).onError(
@@ -41,5 +46,16 @@ class RegisterViewModel with ChangeNotifier {
         );
       },
     );
+  }
+
+  // Logout
+  void logout(BuildContext context) {
+    SessionController().logout().then((value) {
+      userName = "";
+      email = "";
+      Navigator.pushReplacementNamed(context, RoutesNames.loginView);
+    }).onError((error, stacktrace) {
+      log(error.toString());
+    });
   }
 }

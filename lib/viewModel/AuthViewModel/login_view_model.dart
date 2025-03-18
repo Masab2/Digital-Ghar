@@ -1,17 +1,16 @@
 // ignore_for_file: file_names, use_build_context_synchronously
 
 import 'dart:developer';
+import 'package:digital_ghar/Repository/AuthRepo/auth_http_repo.dart';
 import 'package:digital_ghar/Repository/AuthRepo/auth_repo.dart';
+import 'package:digital_ghar/config/Global/gobal.dart';
 import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/config/utils/utils.dart';
-import 'package:digital_ghar/main.dart';
 import 'package:digital_ghar/service/SessionController/session_controller.dart';
 import 'package:flutter/material.dart';
 
 class LoginViewModel with ChangeNotifier {
-  final AuthRepo _loginRepo;
-
-  LoginViewModel() : _loginRepo = getIt<AuthRepo>();
+  final AuthRepo _loginRepo = AuthHttpRepo();
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
@@ -35,6 +34,8 @@ class LoginViewModel with ChangeNotifier {
         await SessionController()
             .saveUserInPrefrences(value, value.data?.id ?? "");
         await SessionController().getUserFromPrefrences();
+        userName = value.data?.name ?? "";
+        email = value.data?.email ?? "";
         Navigator.pushReplacementNamed(context, RoutesNames.bottomNavBarView);
       },
     ).onError(

@@ -9,6 +9,9 @@ export './user/ProfileView/profile_view.dart';
 export './user/Home/all_rent_properties_view.dart';
 export './user/Home/PropertyDetails/property_detail_view.dart';
 export './user/Auth/select_auth_screen_view.dart';
+export './user/Contractors/contractors_view.dart';
+export './user/Design/designs_list_view.dart';
+export './user/Design/design_detail_view.dart';
 
 // Admin Views
 export './Admin/admin_dashboard_view.dart';

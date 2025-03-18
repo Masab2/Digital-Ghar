@@ -9,6 +9,7 @@ class RoutesNames {
   static const String allRentPropertiesView = "allRentPropertiesView";
   static const String houseForSellPropertieDetailView =
       "houseForSellPropertieDetailView";
+  static const String designDetailScreen = "designDetailScreen";
 
   // Admin Routes
   static const String adminDashboardView = "adminDashboardView";
