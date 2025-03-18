@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:digital_ghar/Model/GetAllContractorProfileModel/get_all_contractor_profile_model.dart';
 import 'package:digital_ghar/config/components/TextFormFeilds/search_text_form_feild.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
 import 'package:digital_ghar/config/widgets/ContracterUserWidget/contracter_card_widget.dart';
@@ -59,6 +58,7 @@ class _ContractorsViewState extends State<ContractorsView> {
                         Expanded(
                           child: CustomizedFeilds(
                             onChanged: (value) {
+                              viewModel.filterContractors(value);
                               return null;
                             },
                             hintText: 'Search contractors by Area',
@@ -71,13 +71,12 @@ class _ContractorsViewState extends State<ContractorsView> {
                     // Specialization chips
                     Expanded(
                       child: ListView.builder(
-                        itemCount: viewModel.apiResponse.data?.profiles?.length,
+                        itemCount: viewModel.filteredContracters.length,
                         itemBuilder: (context, index) {
                           final contractor =
-                              viewModel.apiResponse.data?.profiles?[index];
+                              viewModel.filteredContracters[index];
                           return ContractorCard(
-                            contractor:
-                                contractor ?? ContractorProfileModelData(),
+                            contractor: contractor,
                           );
                         },
                       ),

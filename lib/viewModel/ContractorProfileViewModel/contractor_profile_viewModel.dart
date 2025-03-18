@@ -128,10 +128,15 @@ class ContractorProfileViewmodel with ChangeNotifier {
     }
   }
 
+  List<ContractorProfileModelData> allContracters = [];
+  List<ContractorProfileModelData> filteredContracters = [];
+
   // Get Contractor Profile
   void setContractorProfileResponse(
       ApiResponse<GetAllContractorProfileModel> response) {
     apiResponse = response;
+    allContracters = response.data?.profiles ?? [];
+    filteredContracters = allContracters;
     notifyListeners();
   }
 
@@ -144,5 +149,18 @@ class ContractorProfileViewmodel with ChangeNotifier {
       log(error.toString());
       setContractorProfileResponse(ApiResponse.error(error.toString()));
     });
+  }
+
+  // Filtered Contracters According to closeest Address
+  void filterContractors(String qurey) {
+    if (qurey.isEmpty) {
+      filteredContracters = allContracters;
+      notifyListeners();
+    } else {
+      filteredContracters = allContracters
+          .where((e) => e.address == qurey.toLowerCase())
+          .toList();
+      notifyListeners();
+    }
   }
 }
