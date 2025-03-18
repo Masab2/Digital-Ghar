@@ -49,8 +49,15 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   image_picker: ^1.1.2
   mime: ^2.0.0
-  flutter_cube: ^0.1.1
   flutter_3d_controller: ^2.1.0
+  icons_launcher: ^3.0.1
+icons_launcher:
+  image_path: "assets/images/logo.png"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
 
 dev_dependencies:
   flutter_test:
