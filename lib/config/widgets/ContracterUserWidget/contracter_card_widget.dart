@@ -1,6 +1,7 @@
 import 'package:digital_ghar/Model/GetAllContractorProfileModel/get_all_contractor_profile_model.dart';
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
+import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
@@ -29,7 +30,13 @@ class ContractorCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           // Navigate to contractor details page
-          // Navigator.pushNamed(context, RoutesNames.contractorDetailsView, arguments: contractor);
+          Navigator.pushNamed(
+            context,
+            RoutesNames.contracterDetailScreen,
+            arguments: {
+              'data': contractor,
+            },
+          );
         },
         borderRadius: BorderRadius.circular(15),
         child: Padding(
@@ -68,7 +75,6 @@ class ContractorCard extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        
                       ],
                     ),
                     SizedBox(height: context.mh * 0.005),
@@ -118,7 +124,8 @@ class ContractorCard extends StatelessWidget {
                             ),
                             SizedBox(width: context.mw * 0.01),
                             Text(
-                              contractor.ratings?.averageRating.toString() ?? "",
+                              contractor.ratings?.averageRating.toString() ??
+                                  "",
                               style: GoogleFonts.poppins(
                                 fontSize: context.mh * 0.014,
                                 fontWeight: FontWeight.w500,

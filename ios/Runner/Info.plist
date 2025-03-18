@@ -51,6 +51,8 @@
 	<string>We need access to your photo library.</string>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
+	<key>com.apple.security.network.client</key>
+	<true/>
 
 </dict>
 </plist>

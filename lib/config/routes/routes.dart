@@ -1,3 +1,4 @@
+import 'package:digital_ghar/Model/GetAllContractorProfileModel/get_all_contractor_profile_model.dart';
 import 'package:digital_ghar/Model/HouseForSaleModel/house_for_sale_model.dart';
 import 'package:digital_ghar/Model/RentPropertiesModel/rent_properties_model.dart';
 import 'package:digital_ghar/config/routes/routes_names.dart';
@@ -60,6 +61,15 @@ class Routes {
         return MaterialPageRoute(
           builder: (_) => DesignDetailView(
             design: design,
+          ),
+        );
+      case RoutesNames.contracterDetailScreen:
+        final Map<String, dynamic> arguments = args as Map<String, dynamic>;
+        final data = arguments['data'] as ContractorProfileModelData;
+
+        return MaterialPageRoute(
+          builder: (_) => ContractorDetailView(
+            data: data,
           ),
         );
       // Contractor Routes
