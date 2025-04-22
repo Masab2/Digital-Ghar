@@ -8,6 +8,7 @@ import 'package:digital_ghar/viewModel/AuthViewModel/register_viewModel.dart';
 import 'package:digital_ghar/viewModel/BottomNavBarViewModel/bottom_nav_bar_viewModel.dart';
 import 'package:digital_ghar/viewModel/CategoryViewModel/category_viewModel.dart';
 import 'package:digital_ghar/viewModel/ContractorProfileViewModel/contractor_profile_viewModel.dart';
+import 'package:digital_ghar/viewModel/HomeQuotationViewModel/home_quotation_viewModel.dart';
 import 'package:digital_ghar/viewModel/HouseForSellViewModel/house_for_sell_view_model.dart';
 import 'package:digital_ghar/viewModel/RentPropertiesViewModel/rent_properties_viewModel.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => RentPropertiesViewmodel()),
         ChangeNotifierProvider(create: (_) => ContractorProfileViewmodel()),
         ChangeNotifierProvider(create: (_) => AddPropertyViewmodel()),
+        ChangeNotifierProvider(create: (_) => HomeQuotationViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

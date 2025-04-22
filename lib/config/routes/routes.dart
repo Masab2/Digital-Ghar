@@ -72,12 +72,18 @@ class Routes {
             data: data,
           ),
         );
-      // Contractor Routes
+      case RoutesNames.bookConsultancyView:
+       
+
+        return MaterialPageRoute(
+          builder: (_) => HouseQuotationView(),
+        );
+      //* Contractor Routes
       case RoutesNames.contractorDashboardView:
         return MaterialPageRoute(
           builder: (_) => const ContractorDashboardView(),
         );
-      // Admin Routes
+      //? Admin Routes
       case RoutesNames.adminDashboardView:
         return MaterialPageRoute(
           builder: (_) => const AdminDashboardView(),

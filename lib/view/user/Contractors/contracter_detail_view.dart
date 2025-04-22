@@ -1,6 +1,7 @@
 import 'package:digital_ghar/Model/GetAllContractorProfileModel/get_all_contractor_profile_model.dart';
 import 'package:digital_ghar/config/components/RoundBtn/round_btn.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
+import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/config/widgets/ContracterUserWidget/contracter_detail_profile_card_widget.dart';
 import 'package:digital_ghar/config/widgets/ContracterUserWidget/contractor_info_item_widget.dart';
 import 'package:digital_ghar/config/widgets/ContracterUserWidget/stats_section_widget.dart';
@@ -143,7 +144,12 @@ class _ContractorDetailViewState extends State<ContractorDetailView> {
             ),
             child: RoundBtn(
               text: "Book Consultaion",
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  RoutesNames.bookConsultancyView,
+                );
+              },
               radius: 10,
             ),
           ),
