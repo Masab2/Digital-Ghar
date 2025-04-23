@@ -34,7 +34,7 @@ class SelectAuthScreenView extends StatelessWidget {
               color: Colors.orange,
               onPressed: () {
                 Navigator.pushNamed(
-                    context, RoutesNames.contractorDashboardView);
+                    context, RoutesNames.contractorAuthView);
               },
             ),
 

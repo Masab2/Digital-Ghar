@@ -19,3 +19,9 @@ export './GetQuatationViewWidgets/requiremnets_input_feild_widget.dart';
 
 // Admin Widgets
 export './AdminAddPropertyForSellWidgets/admin_add_property_for_sell_category_dropdown_widget.dart';
+
+
+// Contractor Widgets
+export './ContractorDashboardWidgets/contractor_dashboard_body_widget.dart';
+export './ContractorAuthWidgets/contractor_auth_email_widgets.dart';
+export './ContractorAuthWidgets/contractor_password_input_widget.dart';

@@ -143,7 +143,7 @@ class _ContractorDetailViewState extends State<ContractorDetailView> {
               ],
             ),
             child: RoundBtn(
-              text: "Book Consultaion",
+              text: "Quote Request",
               onTap: () {
                 Navigator.pushNamed(
                   context,

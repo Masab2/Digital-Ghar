@@ -21,4 +21,5 @@ class RoutesNames {
 
   // Contractor Routes
   static const String contractorDashboardView = "contractorDashboardView";
+  static const String contractorAuthView = "contractorAuthView";
 }

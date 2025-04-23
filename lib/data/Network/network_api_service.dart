@@ -179,6 +179,7 @@ class NetworkApiService implements BaseApiServices {
 
     switch (response.statusCode) {
       case 200:
+        return jsonDecode(response.body);
       case 201:
         return jsonDecode(response.body);
       case 400:
@@ -186,6 +187,8 @@ class NetworkApiService implements BaseApiServices {
       case 500:
         throw ServerErrorException(response.body.toString());
       case 404:
+        throw UnauthorisedException(response.body.toString());
+      case 401:
         throw UnauthorisedException(response.body.toString());
       default:
         throw FetchDataException(

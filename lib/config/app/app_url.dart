@@ -42,4 +42,11 @@ class AppUrl {
 
   static String updateHouseForSellUrl(id) =>
       "${baseUrl}api/update-house?id=$id";
+
+  // Add Quatation Routes
+  static String addQuatationUrl = "${baseUrl}api/add-quotation-request";
+
+  // Predict Cost
+  static String predictCostUrl = "${baseUrl}api/predict-cost";
+    
 }

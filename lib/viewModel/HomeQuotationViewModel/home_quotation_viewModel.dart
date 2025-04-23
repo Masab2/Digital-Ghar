@@ -1,8 +1,9 @@
+import 'package:digital_ghar/Repository/QuatationRequestRepo/quatationRequestHttpRepo.dart';
+import 'package:digital_ghar/Repository/QuatationRequestRepo/quatationRequestRepo.dart';
+import 'package:digital_ghar/config/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class HomeQuotationViewModel with ChangeNotifier {
-
-
   String getSizeDescription(String size) {
     switch (size) {
       case '5 Marla':
@@ -18,11 +19,31 @@ class HomeQuotationViewModel with ChangeNotifier {
     }
   }
 
-
   String selectedValue = '5 Marla';
   // update radio value
   void updateRadioValue(String value) {
     selectedValue = value;
     notifyListeners();
+  }
+
+  final QuatationRequestRepo _quatationRequestRepo = QuatationRequestHttpRepo();
+
+  void addQuatationRequestApi(
+      houseSize, requirements, contractorId, BuildContext context) async {
+    try {
+      await _quatationRequestRepo
+          .addQuatationRequestApi(houseSize, requirements, contractorId)
+          .then(
+        (value) {
+          Utils.showCustomSnackBar(context, value.message ?? "", "Success");
+        },
+      ).onError(
+        (error, stackTrace) {
+          Utils.showCustomSnackBar(context, error.toString(), "Error");
+        },
+      );
+    } catch (e) {
+      Utils.showCustomSnackBar(context, e.toString(), "Error");
+    }
   }
 }

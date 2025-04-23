@@ -254,8 +254,8 @@ mixin _$UserDataList {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'email')
   String get email => throw _privateConstructorUsedError;
-  @JsonKey(name: 'gender')
-  String get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'role')
+  String get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdAt')
   String get createdDate => throw _privateConstructorUsedError;
 
@@ -275,7 +275,7 @@ abstract class $UserDataListCopyWith<$Res> {
       {@JsonKey(name: '_id') String id,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'gender') String gender,
+      @JsonKey(name: 'role') String role,
       @JsonKey(name: 'createdAt') String createdDate});
 }
 
@@ -295,7 +295,7 @@ class _$UserDataListCopyWithImpl<$Res, $Val extends UserDataList>
     Object? id = null,
     Object? name = null,
     Object? email = null,
-    Object? gender = null,
+    Object? role = null,
     Object? createdDate = null,
   }) {
     return _then(_value.copyWith(
@@ -311,9 +311,9 @@ class _$UserDataListCopyWithImpl<$Res, $Val extends UserDataList>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String,
       createdDate: null == createdDate
           ? _value.createdDate
@@ -335,7 +335,7 @@ abstract class _$$UserDataListImplCopyWith<$Res>
       {@JsonKey(name: '_id') String id,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'gender') String gender,
+      @JsonKey(name: 'role') String role,
       @JsonKey(name: 'createdAt') String createdDate});
 }
 
@@ -353,7 +353,7 @@ class __$$UserDataListImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? email = null,
-    Object? gender = null,
+    Object? role = null,
     Object? createdDate = null,
   }) {
     return _then(_$UserDataListImpl(
@@ -369,9 +369,9 @@ class __$$UserDataListImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String,
       createdDate: null == createdDate
           ? _value.createdDate
@@ -388,7 +388,7 @@ class _$UserDataListImpl implements _UserDataList {
       {@JsonKey(name: '_id') this.id = '',
       @JsonKey(name: 'name') this.name = '',
       @JsonKey(name: 'email') this.email = '',
-      @JsonKey(name: 'gender') this.gender = '',
+      @JsonKey(name: 'role') this.role = '',
       @JsonKey(name: 'createdAt') this.createdDate = ''});
 
   factory _$UserDataListImpl.fromJson(Map<String, dynamic> json) =>
@@ -404,15 +404,15 @@ class _$UserDataListImpl implements _UserDataList {
   @JsonKey(name: 'email')
   final String email;
   @override
-  @JsonKey(name: 'gender')
-  final String gender;
+  @JsonKey(name: 'role')
+  final String role;
   @override
   @JsonKey(name: 'createdAt')
   final String createdDate;
 
   @override
   String toString() {
-    return 'UserDataList(id: $id, name: $name, email: $email, gender: $gender, createdDate: $createdDate)';
+    return 'UserDataList(id: $id, name: $name, email: $email, role: $role, createdDate: $createdDate)';
   }
 
   @override
@@ -423,7 +423,7 @@ class _$UserDataListImpl implements _UserDataList {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.role, role) || other.role == role) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate));
   }
@@ -431,7 +431,7 @@ class _$UserDataListImpl implements _UserDataList {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, email, gender, createdDate);
+      Object.hash(runtimeType, id, name, email, role, createdDate);
 
   @JsonKey(ignore: true)
   @override
@@ -452,7 +452,7 @@ abstract class _UserDataList implements UserDataList {
           {@JsonKey(name: '_id') final String id,
           @JsonKey(name: 'name') final String name,
           @JsonKey(name: 'email') final String email,
-          @JsonKey(name: 'gender') final String gender,
+          @JsonKey(name: 'role') final String role,
           @JsonKey(name: 'createdAt') final String createdDate}) =
       _$UserDataListImpl;
 
@@ -469,8 +469,8 @@ abstract class _UserDataList implements UserDataList {
   @JsonKey(name: 'email')
   String get email;
   @override
-  @JsonKey(name: 'gender')
-  String get gender;
+  @JsonKey(name: 'role')
+  String get role;
   @override
   @JsonKey(name: 'createdAt')
   String get createdDate;

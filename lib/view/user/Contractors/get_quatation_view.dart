@@ -19,55 +19,10 @@ class _HouseQuotationViewState extends State<HouseQuotationView> {
   bool isPredicting = false;
   double? predictedCost;
 
-  final List<String> houseTypes = [
-    'Modern',
-    'Traditional',
-    'Contemporary',
-    'Minimalist',
-    'Colonial',
-  ];
-
-  final List<String> houseSizes = [
-    '5 Marla',
-    '10 Marla',
-    '1 Kanal',
-    '2 Kanal',
-  ];
-
-  final List<Map<String, dynamic>> houseTypeDetails = [
-    {
-      'type': 'Modern',
-      'image': 'https://i.imgur.com/QZxfCkK.jpg',
-      'description': 'Clean lines, minimal decorations, and open floor plans.',
-    },
-    {
-      'type': 'Traditional',
-      'image': 'https://i.imgur.com/HlvTYyZ.jpg',
-      'description':
-          'Classic architecture with ornate details and familiar layouts.',
-    },
-    {
-      'type': 'Contemporary',
-      'image': 'https://i.imgur.com/1XtZWdP.jpg',
-      'description':
-          'Unique designs with eco-friendly features and innovative materials.',
-    },
-    {
-      'type': 'Minimalist',
-      'image': 'https://i.imgur.com/uG3biNu.jpg',
-      'description':
-          'Functional spaces with simple aesthetic and efficient use of space.',
-    },
-    {
-      'type': 'Colonial',
-      'image': 'https://i.imgur.com/4kQBLYZ.jpg',
-      'description':
-          'Symmetrical design with classic elements and formal layouts.',
-    },
-  ];
-
-  void _predictCost() {
-    
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
   }
 
   @override
@@ -108,7 +63,6 @@ class _HouseQuotationViewState extends State<HouseQuotationView> {
                     0.01.ph(context),
                     HouseSizeSelector(
                       selectedHouseType: selectedHouseType,
-                      houseSizes: houseSizes,
                     ),
                     0.02.ph(context),
                     Text(
@@ -132,10 +86,13 @@ class _HouseQuotationViewState extends State<HouseQuotationView> {
               ),
             ),
           ),
-          RoundBtn(
-            text: "Get Quotation",
-            onTap: () {/* Handle quotation request */},
-            radius: 10,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: context.mw * 0.05, vertical: context.mh * 0.02),
+            child: RoundBtn(
+              text: "Get Quotation",
+              onTap: () {/* Handle quotation request */},
+              radius: 10,
+            ),
           ),
         ],
       ),
@@ -146,7 +103,7 @@ class _HouseQuotationViewState extends State<HouseQuotationView> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton.icon(
-        onPressed: isPredicting ? null : _predictCost,
+        onPressed: isPredicting ? null : () {},
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFF10B981),
           foregroundColor: Colors.white,

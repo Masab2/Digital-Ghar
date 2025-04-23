@@ -46,4 +46,33 @@ class LoginViewModel with ChangeNotifier {
       },
     );
   }
+
+  // Contractor Login Api
+  void contractorLoginApi(TextEditingController emailController,
+      TextEditingController passwordController, BuildContext context) {
+    try {
+      setLoading(true);
+      _loginRepo
+          .contractorLoginApi(emailController.text, passwordController.text)
+          .then(
+        (value) async {
+          setLoading(false);
+          if (value.data?.role == "contractor") {
+            Navigator.pushNamed(context, RoutesNames.contractorDashboardView);
+          } else {
+            Utils.showCustomSnackBar(context, "Invalid Credentials", "Error");
+          }
+        },
+      ).onError(
+        (error, stackTrace) {
+          setLoading(false);
+          log(error.toString());
+          Utils.showCustomSnackBar(context, error.toString(), "Error");
+        },
+      );
+    } catch (e) {
+      log(e.toString());
+      Utils.showCustomSnackBar(context, e.toString(), "Error");
+    }
+  }
 }

@@ -22,7 +22,8 @@ class UserDataList with _$UserDataList {
     @JsonKey(name: '_id') @Default('') String id,
     @JsonKey(name: 'name') @Default('') String name,
     @JsonKey(name: 'email') @Default('') String email,
-    @JsonKey(name: 'gender') @Default('') String gender,
+    @JsonKey(name: 'role') @Default('') String role,
+    
     @JsonKey(name: 'createdAt') @Default('') String createdDate,
   }) = _UserDataList;
 

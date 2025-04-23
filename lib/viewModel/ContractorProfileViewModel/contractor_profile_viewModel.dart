@@ -114,6 +114,7 @@ class ContractorProfileViewmodel with ChangeNotifier {
         setLoading(false);
         Utils.showCustomSnackBar(
             context, "Contractor Profile Created Sucessfully", "Succsess");
+        getContractorProfileApi();
         fullName.clear();
         email.clear();
         phone.clear();
