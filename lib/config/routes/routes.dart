@@ -74,7 +74,9 @@ class Routes {
         );
       case RoutesNames.bookConsultancyView:
         return MaterialPageRoute(
-          builder: (_) => const HouseQuotationView(),
+          builder: (_) => HouseQuotationView(
+            contractorId: args as String,
+          ),
         );
       //* Contractor Routes
       case RoutesNames.contractorAuthView:

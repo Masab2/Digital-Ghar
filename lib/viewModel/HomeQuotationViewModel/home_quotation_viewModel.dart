@@ -20,6 +20,9 @@ class HomeQuotationViewModel with ChangeNotifier {
   }
 
   String selectedValue = '5 Marla';
+  bool isPredicting = false;
+  String predictedCost = '';
+
   // update radio value
   void updateRadioValue(String value) {
     selectedValue = value;
@@ -29,13 +32,35 @@ class HomeQuotationViewModel with ChangeNotifier {
   final QuatationRequestRepo _quatationRequestRepo = QuatationRequestHttpRepo();
 
   void addQuatationRequestApi(
-      houseSize, requirements, contractorId, BuildContext context) async {
+      requirements, contractorId, BuildContext context) async {
     try {
       await _quatationRequestRepo
-          .addQuatationRequestApi(houseSize, requirements, contractorId)
+          .addQuatationRequestApi(selectedValue, requirements, contractorId)
           .then(
         (value) {
           Utils.showCustomSnackBar(context, value.message ?? "", "Success");
+        },
+      ).onError(
+        (error, stackTrace) {
+          Utils.showCustomSnackBar(context, error.toString(), "Error");
+        },
+      );
+    } catch (e) {
+      Utils.showCustomSnackBar(context, e.toString(), "Error");
+    }
+  }
+
+  void predictCostApi(requirements, BuildContext context) async {
+    try {
+      isPredicting = true;
+      notifyListeners();
+      await _quatationRequestRepo
+          .predictCostApi(selectedValue, requirements)
+          .then(
+        (value) {
+          predictedCost = value.message ?? "";
+          isPredicting = false;
+          notifyListeners();
         },
       ).onError(
         (error, stackTrace) {

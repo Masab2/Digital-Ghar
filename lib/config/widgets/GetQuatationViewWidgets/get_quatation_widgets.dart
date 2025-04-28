@@ -68,6 +68,8 @@ class HouseSizeSelector extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () {
+                  viewModel.isPredicting = false;
+                  viewModel.predictedCost = '';
                   viewModel.updateRadioValue(name);
                 },
                 child: ResponsiveRadioItemListtileComp(

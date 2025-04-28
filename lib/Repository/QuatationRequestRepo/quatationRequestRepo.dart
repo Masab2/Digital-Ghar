@@ -6,4 +6,8 @@ abstract class QuatationRequestRepo {
     requirements,
     contractorId,
   );
+
+  Future<SuccessModel> predictCostApi(houseSize, requirements);
+
+
 }

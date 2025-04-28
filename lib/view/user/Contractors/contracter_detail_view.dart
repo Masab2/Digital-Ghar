@@ -148,6 +148,7 @@ class _ContractorDetailViewState extends State<ContractorDetailView> {
                 Navigator.pushNamed(
                   context,
                   RoutesNames.bookConsultancyView,
+                  arguments: widget.data.contractorId,
                 );
               },
               radius: 10,

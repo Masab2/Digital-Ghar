@@ -1,12 +1,17 @@
+import 'dart:developer';
+
 import 'package:digital_ghar/config/components/RoundBtn/round_btn.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
 import 'package:digital_ghar/config/widgets/GetQuatationViewWidgets/get_quatation_widgets.dart';
 import 'package:digital_ghar/config/widgets/GetQuatationViewWidgets/requiremnets_input_feild_widget.dart';
+import 'package:digital_ghar/viewModel/HomeQuotationViewModel/home_quotation_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HouseQuotationView extends StatefulWidget {
-  const HouseQuotationView({super.key});
+  final String contractorId;
+  const HouseQuotationView({super.key, required this.contractorId});
 
   @override
   State<HouseQuotationView> createState() => _HouseQuotationViewState();
@@ -27,6 +32,7 @@ class _HouseQuotationViewState extends State<HouseQuotationView> {
 
   @override
   Widget build(BuildContext context) {
+    final homeQuotationVM = Provider.of<HomeQuotationViewModel>(context);
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
@@ -78,19 +84,28 @@ class _HouseQuotationViewState extends State<HouseQuotationView> {
                       descriptionController: _descriptionController,
                     ),
                     0.02.ph(context),
-                    if (predictedCost != null) _buildPredictedCost(),
+                    if (homeQuotationVM.predictedCost != '')
+                      _buildPredictedCost(homeQuotationVM),
                     0.02.ph(context),
-                    _buildPredictButton(),
+                    _buildPredictButton(homeQuotationVM),
                   ],
                 ),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.mw * 0.05, vertical: context.mh * 0.02),
+            padding: EdgeInsets.symmetric(
+                horizontal: context.mw * 0.05, vertical: context.mh * 0.02),
             child: RoundBtn(
               text: "Get Quotation",
-              onTap: () {/* Handle quotation request */},
+              onTap: () {
+                log(widget.contractorId);
+                homeQuotationVM.addQuatationRequestApi(
+                  _descriptionController.text,
+                  widget.contractorId,
+                  context,
+                );
+              },
               radius: 10,
             ),
           ),
@@ -99,11 +114,15 @@ class _HouseQuotationViewState extends State<HouseQuotationView> {
     );
   }
 
-  Widget _buildPredictButton() {
+  Widget _buildPredictButton(HomeQuotationViewModel viewModel) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton.icon(
-        onPressed: isPredicting ? null : () {},
+        onPressed: viewModel.isPredicting
+            ? null
+            : () {
+                viewModel.predictCostApi(_descriptionController.text, context);
+              },
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFF10B981),
           foregroundColor: Colors.white,
@@ -134,7 +153,7 @@ class _HouseQuotationViewState extends State<HouseQuotationView> {
     );
   }
 
-  Widget _buildPredictedCost() {
+  Widget _buildPredictedCost(HomeQuotationViewModel viewModel) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -156,7 +175,7 @@ class _HouseQuotationViewState extends State<HouseQuotationView> {
           ),
           const SizedBox(height: 8),
           Text(
-            "Rs. ${predictedCost!.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}",
+            "Rs. ${viewModel.predictedCost} ",
             style: GoogleFonts.poppins(
               fontSize: 28,
               fontWeight: FontWeight.w700,

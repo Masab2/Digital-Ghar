@@ -8,7 +8,8 @@ class QuatationRequestHttpRepo implements QuatationRequestRepo {
   final _api = NetworkApiService();
   final LocalStorage localStorage = LocalStorage();
   @override
-  Future<SuccessModel> addQuatationRequestApi(houseSize, requirements, contractorId) async {
+  Future<SuccessModel> addQuatationRequestApi(
+      houseSize, requirements, contractorId) async {
     var userId = await localStorage.readValue('id');
     Map<String, dynamic> data = {
       "houseSize": houseSize,
@@ -18,6 +19,17 @@ class QuatationRequestHttpRepo implements QuatationRequestRepo {
     };
     final response =
         await _api.getPostApiResponse(AppUrl.addQuatationUrl, data, false);
+    return SuccessModel.fromJson(response);
+  }
+
+  @override
+  Future<SuccessModel> predictCostApi(houseSize, requirements) async {
+    Map<String, dynamic> data = {
+      "houseSize": houseSize,
+      "requirements": requirements,
+    };
+    final response =
+        await _api.getPostApiResponse(AppUrl.predictCostUrl, data, false);
     return SuccessModel.fromJson(response);
   }
 }

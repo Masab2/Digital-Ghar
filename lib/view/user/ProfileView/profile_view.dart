@@ -203,7 +203,7 @@ class _ProfileViewState extends State<ProfileView> {
                       context,
                       icon: IconlyBold.chat,
                       title: "Messages",
-                      subtitle: "Chat with consultants",
+                      subtitle: "Chat with AI",
                       iconColor: const Color(0xFF805AD5),
                       badgeCount: 3,
                       onTap: () {
@@ -214,11 +214,11 @@ class _ProfileViewState extends State<ProfileView> {
                     _buildMenuCard(
                       context,
                       icon: IconlyBold.calendar,
-                      title: "Appointments",
-                      subtitle: "Manage your schedule",
+                      title: "Quatation Requests",
+                      subtitle: "Your quatation requests",
                       iconColor: const Color(0xFFED8936),
                       onTap: () {
-                        // Navigate to Appointments
+
                       },
                     ),
 
@@ -244,8 +244,6 @@ class _ProfileViewState extends State<ProfileView> {
                         // Navigate to Help
                       },
                     ),
-
-                    // Logout Button
                     Container(
                       margin:
                           EdgeInsets.symmetric(vertical: context.mh * 0.025),
