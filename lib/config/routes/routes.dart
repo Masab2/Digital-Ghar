@@ -78,6 +78,10 @@ class Routes {
             contractorId: args as String,
           ),
         );
+      case RoutesNames.quotationRequestView:
+        return MaterialPageRoute(
+          builder: (_) => const QuotationRequestView(),
+        );
       //* Contractor Routes
       case RoutesNames.contractorAuthView:
         return MaterialPageRoute(

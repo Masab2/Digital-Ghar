@@ -9,5 +9,11 @@ abstract class QuatationRequestRepo {
 
   Future<SuccessModel> predictCostApi(houseSize, requirements);
 
+  Future<SuccessModel> sendResponseToUserApi(
+    estimatedCost,
+    timeTaken,
+    additionalNotes,
+  );
 
+  
 }

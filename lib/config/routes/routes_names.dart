@@ -12,6 +12,7 @@ class RoutesNames {
   static const String designDetailScreen = "designDetailScreen";
   static const String contracterDetailScreen = "contracterDetailScreen";
   static const String bookConsultancyView = "bookConsultancyView";
+  static const String quotationRequestView = "quotationRequestView";
 
 
   // Admin Routes

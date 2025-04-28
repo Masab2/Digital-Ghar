@@ -1,6 +1,7 @@
 import 'package:digital_ghar/config/Global/gobal.dart';
 import 'package:digital_ghar/config/color/app_color.dart';
 import 'package:digital_ghar/config/extenshion/extenshion.dart';
+import 'package:digital_ghar/config/routes/routes_names.dart';
 import 'package:digital_ghar/viewModel/AuthViewModel/register_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -218,7 +219,7 @@ class _ProfileViewState extends State<ProfileView> {
                       subtitle: "Your quatation requests",
                       iconColor: const Color(0xFFED8936),
                       onTap: () {
-
+                        Navigator.pushNamed(context, RoutesNames.quotationRequestView);
                       },
                     ),
 

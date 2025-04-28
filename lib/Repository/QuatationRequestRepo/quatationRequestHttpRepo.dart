@@ -32,4 +32,15 @@ class QuatationRequestHttpRepo implements QuatationRequestRepo {
         await _api.getPostApiResponse(AppUrl.predictCostUrl, data, false);
     return SuccessModel.fromJson(response);
   }
+  
+  @override
+  Future<SuccessModel> sendResponseToUserApi(estimatedCost, timeTaken, additionalNotes) async{
+    Map<String, dynamic> data = {
+      "estimatedCost": estimatedCost,
+      "timeTaken": timeTaken,
+      "additionalNotes": additionalNotes,
+    };
+    final response = await _api.getPostApiResponse(AppUrl.sendResponseToUserUrl, data, false);
+    return SuccessModel.fromJson(response);
+  }
 }

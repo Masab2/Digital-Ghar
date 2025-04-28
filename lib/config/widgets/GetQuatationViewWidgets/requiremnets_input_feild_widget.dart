@@ -4,10 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 class RequirementsInputField extends StatelessWidget {
   final TextEditingController descriptionController;
+  final int? maxLines;
+  final String? title;
 
   const RequirementsInputField({
     super.key,
     required this.descriptionController,
+    this.maxLines,
+    this.title,
   });
 
   @override
@@ -29,7 +33,7 @@ class RequirementsInputField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Describe what you want in your house",
+            title ?? "Describe what you want in your house",
             style: GoogleFonts.poppins(
               fontSize: context.mh * 0.014,
               fontWeight: FontWeight.w500,
@@ -44,7 +48,7 @@ class RequirementsInputField extends StatelessWidget {
             ),
             child: TextField(
               controller: descriptionController,
-              maxLines: 5,
+              maxLines: maxLines ?? 5,
               decoration: InputDecoration(
                 hintText:
                     "e.g. 4 bedrooms, 3 bathrooms, kitchen with an island, home office, garden space...",

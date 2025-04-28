@@ -31,6 +31,7 @@ class _ContractorsViewState extends State<ContractorsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Contractors',
           style: GoogleFonts.poppins(

@@ -157,23 +157,6 @@ class ContractorCard extends StatelessWidget {
                   ],
                 ),
               ),
-              // Contact Button
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColor.blueColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    // Implement call functionality
-                  },
-                  icon: Icon(
-                    IconlyLight.call,
-                    color: AppColor.blueColor,
-                    size: context.mh * 0.025,
-                  ),
-                ),
-              ),
             ],
           ),
         ),

@@ -14,6 +14,7 @@ export './user/Design/designs_list_view.dart';
 export './user/Design/design_detail_view.dart';
 export './user/Contractors/contracter_detail_view.dart';
 export 'user/Contractors/get_quatation_view.dart';
+export './user/QuotationRequestView/quotation_request_view.dart';
 // Admin Views
 export './Admin/admin_dashboard_view.dart';
 export './Admin/add_contractor_profile_view.dart';

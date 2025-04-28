@@ -48,5 +48,14 @@ class AppUrl {
 
   // Predict Cost
   static String predictCostUrl = "${baseUrl}api/predict-cost";
+
+  // Send Response To User
+  static String sendResponseToUserUrl = "${baseUrl}api/send-response-to-user";
+
+  // Get Quatation For Contracter
+  static String getQuatationForContracterUrl = "${baseUrl}api/get-quatation-request";
+
+  // Get Quatation For User
+  static String getQuatationForUserUrl = "${baseUrl}api/get-quatation-request-by-user-id";
     
 }
